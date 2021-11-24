@@ -1,5 +1,7 @@
 import './App.css'
 import { useState, useEffect } from 'react'
+import SearchFrom from './components/SearchFrom';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const [hero, setHero] = useState([]);
@@ -7,10 +9,35 @@ function App() {
   const getMarvelCharacter = async () => {
     try {
       const getRequest = await fetch('http://localhost:9000/comic');
-      console.log(getRequest);
       const json = await getRequest.json();
-      console.log(json);
+      console.log('getRequest',json);
       setHero(json)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const createComics = async data => {
+    try {
+      const configs = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      }
+      const postRequest = await fetch('http://localhost:9000/comic', configs);
+      const json = await postRequest.json();
+      setHero([...hero, json ])
+      console.log('createComics',json);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const destroy = async id => {
+    try {
+      const deleteRequest = await fetch(`http://localhost:9000/comic/${id}`, { method: "DELETE" })
+      const json = await deleteRequest.json()
+      setHero(hero.filter(marvel => marvel._id !== json._id))
     } catch (error) {
       console.error(error);
     }
@@ -22,7 +49,17 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <h1>MERN APP</h1>
+      <SearchFrom post={createComics}/>
+      {hero && hero.map(marvel => (
+        <div key={marvel._id}>
+          <h3>{marvel.title}</h3>
+          <p>{marvel.description}</p>
+          <small>{marvel.price}</small>
+          <button onClick={() => destroy(marvel._id)}>X</button>
+        </div>
+      ))}
     </div>
   );
 }
