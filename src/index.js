@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
+import Hero from './components/Hero/Hero';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
