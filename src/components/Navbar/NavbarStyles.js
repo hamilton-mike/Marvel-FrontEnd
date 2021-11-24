@@ -4,18 +4,25 @@ export const Nav = styled.nav`
     background-color: #007fc7;
     color: white;
     width: 100%;
-    justify-content: space-around;
     padding: 1em;
     border: 2px solid yellow;
 
-    ul {
-        display: flex;
+    ul li {
+        display: inline;
         list-style-type: none;
         cursor: pointer;
+        padding: 1em;
     }
+
+    li:hover {
+        color: black;
+    }
+
 
     img {
         border-radius: 5rem;
         max-width: 100%;
+        height: 10em;
+        margin-bottom: 1em;
     }
 `;

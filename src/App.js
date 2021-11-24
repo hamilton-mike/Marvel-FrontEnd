@@ -1,7 +1,10 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import SearchFrom from './components/SearchFrom';
-import Navbar from './components/Navbar/Navbar';
+import { Link } from 'react-router-dom';
+import Home from './pages/Home';
+import LandingPage from './pages/LandingPage';
+
 
 function App() {
   const [hero, setHero] = useState([]);
@@ -47,20 +50,23 @@ function App() {
     getMarvelCharacter()
   }, [])
 
+  // <h1>MERN APP</h1>
+  // <SearchFrom post={createComics}/>
+  // {hero && hero.map(marvel => (
+  //   <div key={marvel._id}>
+  //     <h3>{marvel.title}</h3>
+  //     <p>{marvel.description}</p>
+  //     <small>{marvel.price}</small>
+  //     <button onClick={() => destroy(marvel._id)}>X</button>
+  //   </div>
+  // ))}
+
   return (
     <div className="App">
-      <Navbar />
-      <h1>MERN APP</h1>
-      <SearchFrom post={createComics}/>
-      {hero && hero.map(marvel => (
-        <div key={marvel._id}>
-          <h3>{marvel.title}</h3>
-          <p>{marvel.description}</p>
-          <small>{marvel.price}</small>
-          <button onClick={() => destroy(marvel._id)}>X</button>
-        </div>
-      ))}
+      <Link to="/landing">LandingPage</Link>
+      <Link to="/home">HomePage</Link>
     </div>
+
   );
 }
 
