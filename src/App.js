@@ -1,9 +1,9 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import SearchFrom from './components/SearchFrom';
-import { Link } from 'react-router-dom';
-import Home from './pages/Home';
-import LandingPage from './pages/LandingPage';
+import Hero from './components/Hero/Hero';
+import intro from './assets/marvel-intro.mp4'
+
 
 
 function App() {
@@ -62,11 +62,7 @@ function App() {
   // ))}
 
   return (
-    <div className="App">
-      <Link to="/landing">LandingPage</Link>
-      <Link to="/home">HomePage</Link>
-    </div>
-
+    <Hero video={intro} />
   );
 }
 

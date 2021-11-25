@@ -6,12 +6,15 @@ export const Nav = styled.nav`
     width: 100%;
     padding: 1em;
     border: 2px solid yellow;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     ul li {
         display: inline;
         list-style-type: none;
         cursor: pointer;
-        padding: 1em;
+        padding: 0 1em;
     }
 
     li:hover {
@@ -22,7 +25,7 @@ export const Nav = styled.nav`
     img {
         border-radius: 5rem;
         max-width: 100%;
-        height: 10em;
+        height: 5em;
         margin-bottom: 1em;
     }
 `;

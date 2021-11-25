@@ -1,16 +1,21 @@
 import React from 'react'
-import { Button, Container, HeadingOne } from '../../globalStyles'
-import { HeroSection, MarvelIntro, Text } from './HeroStyles'
-import intro from '../../assets/marvel-intro.mp4'
+import { HeroDiv, MarvelIntro, LinkWrapper, Button } from './HeroStyles'
 
-const Hero = () => {
+
+const Hero = ({ video }) => {
+
     return (
-        <HeroSection>
-            <MarvelIntro autoPlay loop>
-                <source src={intro} type="video/mp4" />
+        <HeroDiv>
+            <MarvelIntro autoPlay controls loop muted>
+                <source src={video} type="video/mp4" />
             </MarvelIntro>
-            <Text>HELLO</Text>
-        </HeroSection>
+            <LinkWrapper>
+                <Button>
+                    <a href="/landing">LandingPage</a>
+                </Button>
+                <Button><a href="/home">HomePage</a></Button>
+            </LinkWrapper>
+        </HeroDiv>
     )
 }
 
