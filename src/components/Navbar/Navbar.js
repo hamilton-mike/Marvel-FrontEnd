@@ -10,7 +10,7 @@ const Navbar = () => {
                 <img src={logo} alt='marvel' />
             </a>
             <ul>
-                <li>Home</li>
+                <li><a href="/home">Home</a></li>
                 <li>Create</li>
                 <li>Search</li>
                 <li>About</li>

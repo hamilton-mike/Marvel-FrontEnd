@@ -17,6 +17,11 @@ export const Nav = styled.nav`
         padding: 0 1em;
     }
 
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     li:hover {
         color: black;
     }
