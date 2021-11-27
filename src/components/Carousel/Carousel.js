@@ -5,18 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const Carousel = ({ marvel, loading }) => {
-    const ext = 'portrait_medium.jpg';
-
-    const collectionOfData = marvel => {
-        console.log('marvel', marvel);
-    }
-
-    useEffect(() => {
-        collectionOfData(marvel)
-    }, [])
-
-    console.log('why', marvel);
-
+    const ext = 'portrait_incredible.jpg';
 
     return (
         loading ? <h1>loading...</h1> : (
