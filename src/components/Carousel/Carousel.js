@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
+import React, { useState } from 'react'
+import { CarouselDiv, Image } from './CarouselStyles';
 
 const Carousel = ({ marvel, loading }) => {
+    const [img, setImg] = useState(0)
     const ext = 'portrait_incredible.jpg';
 
+    setTimeout(() => {
+        setImg(img === 11 ? 0 : img + 1)
+    }, 3000);
+
+
     return (
-        loading ? <h1>loading...</h1> : (
-            <div>
-                {marvel.map(character => (
-                    <img key={character.id} src={character.thumbnail.path + `/${ext}`} alt="marvel" />
-                ))}
-            </div>
-        )
+        <CarouselDiv>
+            {loading ? <h1>loading...</h1> : (
+                <>
+                    {marvel.map((character, idx) => (
+                        <div key={idx}>
+                            {idx === img && (<Image key={character.id} src={character.thumbnail.path + `/${ext}`} alt="marvel" />)}
+                        </div>
+                    ))}
+                </>
+            )}
+        </CarouselDiv>
+
     )
 }
 
