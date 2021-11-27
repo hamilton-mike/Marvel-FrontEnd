@@ -10,26 +10,40 @@ const Home = () => {
     const privateKey = process.env.REACT_APP_MARVEL_KEY;
     const hash = process.env.REACT_APP_MARVEL_HASH;
 
-    const marvelCall = async () => {
-        try {
-            const getRequest = await axios(`https://gateway.marvel.com/v1/public/characters?ts=1&apikey=${privateKey}&hash=${hash}`);
-            const dataObj  = getRequest.data;
-            const res = dataObj.data.results
-            setHero(res)
-            setLoading(false)
-        } catch (error) {
-            console.error(error);
-        }
+    const marvelCall = () => {
+        const ids = [1009652, 1011095, 1009338];
+
+        ids.map(async(id) => {
+            try {
+                const promises = await axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`);
+                const results = await Promise.all(promises)
+                setHero(results.map( result => results.data.results[0]))
+            } catch (error) {
+                console.error(error);
+            }
+        });
     }
+        // ids.forEach(async id => {
+        //     try {
+        //         let getRequest = await axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`);
+        //         const dataObj  = getRequest.data.data.results['0'];
+        //         setHero([...hero, dataObj])
+        //         // setLoading(false)
+        //     } catch (error) {
+        //     }
+        // });
+
+
+
 
     useEffect(() => {
         marvelCall()
     }, [])
-    console.log(hero);
+
     return (
         <div>
             <Navbar />
-            <Carousel hero={hero} loading={loading}/>
+            <Carousel marvel={hero} loading={loading}/>
         </div>
     )
 }
