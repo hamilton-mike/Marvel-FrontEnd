@@ -12,7 +12,7 @@ const Home = () => {
 
     const marvelCall = async () => {
         try {
-            const ids = [1009652, 1011095, 1009338, 1016181, 1009282, 1009384, 1009562, 1017299, 1010338, 1009187, 1009268, 1009718];
+            const ids = [1009452, 1011095, 1009338, 1016181, 1009282, 1009384, 1009562, 1017299, 1010338, 1009187, 1009268, 1009599];
             const promises = ids.map(async id => axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`))
             const results = await Promise.all(promises)
             setHero(results.map(result => result.data.data.results[0]))
