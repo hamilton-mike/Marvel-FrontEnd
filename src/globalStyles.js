@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100%;
-    max-width: 40em;
+    padding: 2rem;
+    max-width: 100%
+    width: 85%;
+    margin: 0 auto;
 `;
 
 export const HeadingOne = styled.h1`
     margin-bottom: 2rem;
-    color: ${props => props.theme.color};
     width: 100%;
-    text-align: center;
+`;
+
+export const Flex = styled.div`
+    display: flex;
 `;

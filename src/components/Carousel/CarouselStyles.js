@@ -10,24 +10,25 @@ export const CarouselDiv = styled.div`
     max-width: 100%
     width: 85%;
     overflow: hidden;
+    border: 2rem solid orange;
+    background-color: black;
 `;
 
 export const UnorderList = styled.ul`
     list-style: none;
-    height: 100%;
     display: flex;
     animation: scrolling 20s linear infinite;
 
     @keyframes scrolling {
         0% { transform: translateX(0) ;}
-        100% { transform: translateX(-180vw) ;}
+        100% { transform: translateX(-180%) ;}
     }
 `;
 
 export const ListItem = styled.li`
+    border: 1rem solid black;
     display: flex;
     justify-content: center;
-    border: 6px solid orange;
     width: 15%;
     flex-shrink: 0;
 `;
