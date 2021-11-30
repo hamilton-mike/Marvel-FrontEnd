@@ -26,7 +26,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        marvelCall()
+        // marvelCall()
     }, [])
 
     return (

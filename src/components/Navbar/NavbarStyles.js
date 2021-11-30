@@ -9,6 +9,7 @@ export const Nav = styled.nav`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
 
     ul li {
         display: inline;
@@ -32,5 +33,16 @@ export const Nav = styled.nav`
         max-width: 100%;
         height: 5em;
         margin-bottom: 1em;
+    }
+
+    @media (max-width: 800px) {
+        img {
+            height: 3rem;
+            width:100%;
+        }
+
+        ul {
+            display: none;
+        }
     }
 `;

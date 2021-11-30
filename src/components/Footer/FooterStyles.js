@@ -16,19 +16,33 @@ export const StyleFooter = styled.footer`
     li {
         padding: 0.4em 0;
         margin-left: 1em;
-    }
 
-    span {
-        text-decoration: underline
     }
 
     a {
         text-decoration: none;
+
+        &:hover {
+            color: black;
+            text-decoration: underline;
+
+        }
     }
 
     img {
         max-width: 100%;
         border-radius: 2rem;
         height: 5em;
+    }
+
+    @media (max-width:999px) {
+        img {
+            height: 2em;
+        }
+
+        li, a {
+            font-size: 17px;
+        }
+        flex-direction: column;
     }
 `;

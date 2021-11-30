@@ -20,4 +20,8 @@ export const Div = styled.ul`
     li:nth-child(3) {background-color: green}
     li:nth-child(4) {background-color: blue}
 
+    @media (max-width:700px) {
+        flex-direction: column;s
+    }
+
 `;

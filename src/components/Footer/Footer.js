@@ -1,15 +1,13 @@
 import React from 'react'
 import { StyleFooter } from './FooterStyles'
 import logo from '../../img/marvelLogo.jpg'
+import shield from '../../img/SHIELD.png'
 
 const Footer = () => {
     return (
         <StyleFooter>
             <ul>
-                <li><span>links</span></li>
-            </ul>
-            <ul>
-                <li><span>Socials</span></li>
+                <li>Socials</li>
                 <li>
                     <a href="https://michaelhamilton.netlify.app/">Portfolio</a>
                 </li>
@@ -21,7 +19,7 @@ const Footer = () => {
                 </li>
             </ul>
             <div>
-                <img src={logo} alt='logo' />
+                <img src={shield} alt='logo' />
             </div>
         </StyleFooter>
     )

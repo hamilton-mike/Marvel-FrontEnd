@@ -33,7 +33,7 @@ const InfoDiv = () => {
 
 
     useEffect(() => {
-        marvelCallAtRandom()
+        // marvelCallAtRandom()
     }, [])
 
     console.log(hero["events"]);

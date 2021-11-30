@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const SearchFrom = props => {
+const Form = props => {
     const init = {
         title: ''
     };
@@ -20,12 +20,8 @@ const SearchFrom = props => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Name</label>
-            <input name="title" id="title" onChange={handleChange} />
-            <input type="submit" value="Search" />
-        </form>
+        <div>hi</div>
     )
 }
 
-export default SearchFrom
+export default Form
