@@ -20,22 +20,20 @@ const InfoDiv = () => {
         }
     }
 
-    const charactersAtRandom = () => {
-        const array = [10, 20, 30]
-        let i = 0;
-        while (array.length) {
-            console.log(array[i])
-        }
-        i++
-    }
+    // const charactersAtRandom = () => {
+    //     console.log(i, 'whats i');
+    //     const array = [1009718, 1009652, 1009368]
+    //     let i = 0;
+    //     while (array.length) {
+    //         console.log(array[i])
+    //     }
+    //     i++
+    //     console.log(i, '****');
+    // }
 
-    console.log(charactersAtRandom());
 
     useEffect(() => {
-        marvelCallAtRandom(1009718)
-        setInterval(() => {
-            charactersAtRandom()
-        }, 2000)
+        marvelCallAtRandom()
     }, [])
 
     console.log(hero["events"]);

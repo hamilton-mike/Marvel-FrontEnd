@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { GiHeron } from 'react-icons/gi';
+import React from 'react'
 import { CarouselDiv, Image, UnorderList, ListItem } from './CarouselStyles';
 
 const Carousel = ({ marvel, loading }) => {

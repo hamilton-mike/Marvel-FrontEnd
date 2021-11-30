@@ -2,8 +2,9 @@ import React, {  useState, useEffect } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import Carousel from '../components/Carousel/Carousel'
 import CRUD from '../components/CRUD/CRUD'
-import axios from 'axios'
 import HomeHero from '../components/HomeHero/HomeHero'
+import Footer from '../components/Footer/Footer'
+import axios from 'axios'
 
 
 const Home = () => {
@@ -34,7 +35,7 @@ const Home = () => {
             <HomeHero />
             <Carousel marvel={hero} loading={loading}/>
             <CRUD />
-
+            <Footer />
         </>
     )
 }

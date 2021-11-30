@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Flex } from '../../globalStyles'
+import { Container } from '../../globalStyles'
 import { Section, Div } from './CRUDStyles'
 import { MdOutlinePersonSearch } from 'react-icons/md'
 import { RiAddCircleFill } from 'react-icons/ri'
