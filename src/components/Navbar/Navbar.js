@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { useState }from 'react'
 import logo from '../../img/marvelLogo.jpg'
 import { Nav } from './NavbarStyles'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import HamburgerMenu from './HamburgerMenu'
 
 const Navbar = () => {
+    const [menu, setMenu] = useState(true)
+    const [name, setName] = useState('hamburger')
+
+    const toggle = () => {
+        setMenu(m => !m)
+    }
 
     return (
         <Nav>
             <a href="/">
                 <img src={logo} alt='marvel' />
             </a>
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li>Create</li>
-                <li>Trivia</li>
-            </ul>
+            <GiHamburgerMenu onClick={toggle} className={name}/>
+            <HamburgerMenu menu={menu} />
         </Nav>
     )
 }

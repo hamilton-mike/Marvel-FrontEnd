@@ -11,7 +11,7 @@ export const Nav = styled.nav`
     align-items: center;
     position: fixed;
 
-    ul li {
+    li {
         display: inline;
         list-style-type: none;
         cursor: pointer;
@@ -35,14 +35,40 @@ export const Nav = styled.nav`
         margin-bottom: 1em;
     }
 
+    .hamburger {
+        display: none;
+    }
     @media (max-width: 800px) {
         img {
             height: 3rem;
             width:100%;
         }
 
-        ul {
+        a, li {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        img {
             display: none;
         }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+`;
+
+export const Hamburger = styled.ul`
+    height: 100vh;
+    width: 100vw;
+    padding-top: 6em;
+
+    li, a {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 4rem;
     }
 `;
