@@ -1,7 +1,8 @@
 import React, { useState }from 'react'
 import logo from '../../img/marvelLogo.jpg'
 import { Nav } from './NavbarStyles'
-import { GiHamburgerMenu } from 'react-icons/gi'
+import { GiHamburgerMenu, GiExitDoor } from 'react-icons/gi'
+
 import HamburgerMenu from './HamburgerMenu'
 
 const Navbar = () => {
@@ -10,15 +11,26 @@ const Navbar = () => {
 
     const toggle = () => {
         setMenu(m => !m)
+        // setName('xyz')
     }
 
     return (
         <Nav>
-            <a href="/">
-                <img src={logo} alt='marvel' />
-            </a>
-            <GiHamburgerMenu onClick={toggle} className={name}/>
-            <HamburgerMenu menu={menu} />
+            {menu ? (
+                <>
+                    <a href="/">
+                        <img src={logo} alt='marvel' />
+                    </a>
+                    <GiHamburgerMenu onClick={toggle} className={name}/>
+                    <HamburgerMenu menu={menu} />
+                </>
+            ) : (
+                <>
+                    <HamburgerMenu menu={menu} />
+                    <GiExitDoor onClick={toggle} size={100}/>
+                </>
+            )}
+
         </Nav>
     )
 }

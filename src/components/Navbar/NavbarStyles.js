@@ -38,19 +38,14 @@ export const Nav = styled.nav`
     .hamburger {
         display: none;
     }
+
     @media (max-width: 800px) {
         img {
             height: 3rem;
             width:100%;
         }
 
-        a, li {
-            font-size: 1rem;
-        }
-    }
-
-    @media (max-width: 600px) {
-        img {
+        .unorder {
             display: none;
         }
 
@@ -70,5 +65,12 @@ export const Hamburger = styled.ul`
         display: flex;
         align-items: center;
         font-size: 4rem;
+    }
+
+    @media (max-width: 600px) {
+
+        .hamburger {
+            display: flex;
+        }
     }
 `;

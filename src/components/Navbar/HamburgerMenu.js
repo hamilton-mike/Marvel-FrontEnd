@@ -2,11 +2,11 @@ import React from 'react'
 import { Hamburger } from './NavbarStyles';
 
 const HamburgerMenu = ({ menu }) => {
-    console.log(menu);
+
     return (
         <>
             {menu ? (
-                <ul>
+                <ul className='unorder'>
                     <li><a href="/home">Home</a></li>
                     <li>Create</li>
                     <li>Trivia</li>
