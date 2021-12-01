@@ -7,11 +7,9 @@ import HamburgerMenu from './HamburgerMenu'
 
 const Navbar = () => {
     const [menu, setMenu] = useState(true)
-    const [name, setName] = useState('hamburger')
 
     const toggle = () => {
         setMenu(m => !m)
-        // setName('xyz')
     }
 
     return (
@@ -21,7 +19,7 @@ const Navbar = () => {
                     <a href="/">
                         <img src={logo} alt='marvel' />
                     </a>
-                    <GiHamburgerMenu onClick={toggle} className={name}/>
+                    <GiHamburgerMenu onClick={toggle} className='hamburger'/>
                     <HamburgerMenu menu={menu} />
                 </>
             ) : (

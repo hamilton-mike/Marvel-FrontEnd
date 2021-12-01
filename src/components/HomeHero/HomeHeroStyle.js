@@ -9,7 +9,7 @@ export const HomeDiv = styled.div`
     justify-content: space-around;
     align-items: center;
     height: auto;
-    padding-top: 17%;
+    padding-top: 7%;
 
     img {
         margin-top: 1em;
@@ -20,12 +20,13 @@ export const HomeDiv = styled.div`
     @media (max-width: 1200px) {
         padding: 1em;
         flex-direction: column;
-        padding-top: 40%;
-
-        img {
-            padding-top: 3em;
-        }
+        padding-top: 20%;
     }
+
+    @media (max-width: 700px) {
+        padding-top: 40%;
+    }
+
 `;
 
 

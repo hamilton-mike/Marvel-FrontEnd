@@ -5,6 +5,7 @@ export const Container = styled.div`
     max-width: 100%
     width: 85%;
     margin: 0 auto;
+    overflow: hidden;
 `;
 
 export const HeadingOne = styled.h1`
@@ -14,4 +15,18 @@ export const HeadingOne = styled.h1`
 
 export const Flex = styled.div`
     display: flex;
+`;
+
+export const Grid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width:900px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;

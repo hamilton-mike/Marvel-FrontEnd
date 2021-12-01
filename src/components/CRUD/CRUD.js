@@ -5,18 +5,16 @@ import { MdOutlinePersonSearch } from 'react-icons/md'
 import { RiAddCircleFill } from 'react-icons/ri'
 import { GrEdit } from 'react-icons/gr'
 import { GiSpiderMask } from 'react-icons/gi'
-import InfoDiv from '../InfoDiv/InfoDiv'
 
 const CRUD = () => {
 
     return (
         <Section>
             <Container>
-                <InfoDiv />
                 <Div>
                     <li>
                         <MdOutlinePersonSearch size={45} />
-                        <h3>Search For Your Favorite Marvel Character</h3>
+                        <h3>Search For Your Favorite Marvel Characters</h3>
                     </li>
                     <li>
                         <RiAddCircleFill size={45} />

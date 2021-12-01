@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Section = styled.section`
     text-align: center;
-    padding-top: 1em;
     background-color: purple;
+    margin: 3em;
 `;
 
 export const Div = styled.ul`
     display: flex;
-    margin-top: 3em;
+    // margin: 3em;
 
     li {
         list-style-type: none;
@@ -20,8 +20,8 @@ export const Div = styled.ul`
     li:nth-child(3) {background-color: green}
     li:nth-child(4) {background-color: blue}
 
-    @media (max-width:700px) {
-        flex-direction: column;s
+    @media (max-width:900px) {
+        flex-direction: column;
     }
 
 `;

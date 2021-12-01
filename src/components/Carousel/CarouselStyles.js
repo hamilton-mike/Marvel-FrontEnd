@@ -12,6 +12,8 @@ export const CarouselDiv = styled.div`
     overflow: hidden;
     border: 2rem solid orange;
     background-color: black;
+    margin: 0 5em;
+
 `;
 
 export const UnorderList = styled.ul`

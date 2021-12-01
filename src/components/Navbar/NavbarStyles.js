@@ -10,6 +10,7 @@ export const Nav = styled.nav`
     justify-content: space-around;
     align-items: center;
     position: fixed;
+    z-index: 1;
 
     li {
         display: inline;
@@ -31,8 +32,7 @@ export const Nav = styled.nav`
     img {
         border-radius: 5rem;
         max-width: 100%;
-        height: 5em;
-        margin-bottom: 1em;
+        height: 2em;
     }
 
     .hamburger {
@@ -68,7 +68,6 @@ export const Hamburger = styled.ul`
     }
 
     @media (max-width: 600px) {
-
         .hamburger {
             display: flex;
         }
