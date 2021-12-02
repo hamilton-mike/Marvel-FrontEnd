@@ -11,6 +11,15 @@ export const HomeDiv = styled.div`
     height: auto;
     padding-top: 7%;
 
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    div {
+        padding: 0 1em;
+    }
+
     img {
         margin-top: 1em;
         width: 100%;

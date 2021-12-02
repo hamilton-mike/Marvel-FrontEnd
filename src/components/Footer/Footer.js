@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleFooter } from './FooterStyles'
-import logo from '../../img/marvelLogo.jpg'
 import shield from '../../img/SHIELD.png'
 
 const Footer = () => {

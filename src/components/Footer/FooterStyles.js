@@ -5,8 +5,8 @@ export const StyleFooter = styled.footer`
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    padding: 1em;
     border: 2px solid red;
+    position: sticky;
 
     ul {
         display: flex;
@@ -21,6 +21,7 @@ export const StyleFooter = styled.footer`
 
     a {
         text-decoration: none;
+        color: red;
 
         &:hover {
             color: black;
@@ -43,6 +44,7 @@ export const StyleFooter = styled.footer`
         li, a {
             font-size: 17px;
         }
+
         flex-direction: column;
     }
 `;
