@@ -31,24 +31,52 @@ export const SearchGrid = styled.div`
 
 export const Cards = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr)
+    grid-template-columns: repeat(4, 1fr);
+    border: 3px solid brown;
 `;
 
 export const Card = styled.div`
-    border: 3px solid brown;
     align-content: center;
     text-align: center;
+    border: 3px solid brown;
+
+    ul {
+        display: none;
+    }
+
+    li {
+        list-style-type: none;
+    }
+    button {
+        border-radius: 2rem;
+        padding: 0.3em;
+        color: blue;
+        cursor: pointer;
+    }
+
+    &:hover {
+        ul {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
 
     p {
+        padding-top: 1em;
         font-size: 20px;
-        padding-top: 3em;
+    }
+
+    ul {
+        padding: 1em 0;
     }
 
     img {
         max-width: 100%;
         border-radius: 2rem;
         animation: myAnim 2s ease-in-out 0s 1 normal forwards;
+
     }
+
 
     @keyframes myAnim {
         0%, 50%, 100% { opacity: 1; }

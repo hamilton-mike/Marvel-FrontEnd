@@ -3,8 +3,6 @@ import { FaSearch } from 'react-icons/fa'
 import { Wrapper, Form, SearchGrid, Cards, Card, FormDiv } from './FormStyles'
 import axios from 'axios'
 
-
-
 const SearchForm = () => {
     const init = {
         name: 'thanos'
@@ -47,15 +45,19 @@ const SearchForm = () => {
                 <Form onSubmit={handleSubmit}>
                     <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
                     <FormDiv style={{margin: '1em' }}>
-                        <FaSearch style={{ cursor: 'pointer' }} onClick={handleSubmit} />
+                        <input type="submit" value='submit'></input>
                     </FormDiv>
                 </Form>
             </Wrapper>
             <Cards>
-                {res.map(x => (
-                    <Card key={x.id}>
-                        <p>{x.name}</p>
-                        <img src={`${x.thumbnail.path}/${ext}`} alt={x.name} />
+                {res.map(hero => (
+                    <Card key={hero.id}>
+                        <p>{hero.name}</p>
+                        <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
+                        <ul>
+                            <li><button>Add</button></li>
+                            <li><button>Details</button></li>
+                        </ul>
                     </Card>
                 ))}
             </Cards>

@@ -2,8 +2,6 @@ import React from 'react'
 import { Div, Image, UnOrder, Li } from './InfoDivStyles';
 import { Container, Grid }  from '../../globalStyles'
 
-
-
 const InfoDiv = ({ marvel, loading }) => {
     const ext = 'portrait_incredible.jpg'
 

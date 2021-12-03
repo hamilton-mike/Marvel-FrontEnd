@@ -23,7 +23,6 @@ const Home = () => {
 
             const promiseOne = carousel.map(async id => axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`));
             const promiseTwo = cards.map(async id => axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`));
-
             const carouselResults = await Promise.all(promiseOne)
             const cardsResults = await Promise.all(promiseTwo)
 
@@ -44,7 +43,7 @@ const Home = () => {
         <>
             <Navbar />
             <HomeHero />
-            <Carousel marvel={carousel} loading={loading} />
+            {/* <Carousel marvel={carousel} loading={loading} /> */}
             <CRUD />
             <InfoDiv marvel={cards} loading={loading} />
             <Footer />
