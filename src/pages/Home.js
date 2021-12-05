@@ -29,7 +29,6 @@ const Home = () => {
             setLoading(false)
             setCarousel(carouselResults.map(result => result.data.data.results[0]))
             setCards(cardsResults.map(result => result.data.data.results[0]))
-
         } catch (error) {
             console.error(error);
         }
@@ -43,7 +42,7 @@ const Home = () => {
         <>
             <Navbar />
             <HomeHero />
-            {/* <Carousel marvel={carousel} loading={loading} /> */}
+            <Carousel marvel={carousel} loading={loading} />
             <CRUD />
             <InfoDiv marvel={cards} loading={loading} />
             <Footer />
