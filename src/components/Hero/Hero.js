@@ -10,10 +10,7 @@ const Hero = ({ video }) => {
                 <source src={video} type="video/mp4" />
             </MarvelIntro>
             <LinkWrapper>
-                <Button>
-                    <a href="/landing">LandingPage</a>
-                </Button>
-                <Button><a href="/home">HomePage</a></Button>
+                <Button><a href="/home">Home</a></Button>
             </LinkWrapper>
         </HeroDiv>
     )

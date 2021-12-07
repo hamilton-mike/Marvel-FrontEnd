@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import SearchForm from '../components/Form/Form'
 
-const LandingPage = () => {
+const Search = () => {
     return (
         <div>
             <Navbar />
@@ -13,4 +13,4 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage
+export default Search

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Wrapper, Form, SearchGrid, Cards, Card, FormDiv } from './FormStyles'
 import axios from 'axios'
 
-const SearchForm = () => {
+const SearchForm = ({ id }) => {
     const init = {
         name: 'thanos'
     };
@@ -36,7 +36,6 @@ const SearchForm = () => {
     }
 
     const send = heroObj => {
-        console.log('send', heroObj);
         toBackend(heroObj)
     }
 
@@ -47,8 +46,6 @@ const SearchForm = () => {
             console.error(error);
         }
     }
-
-    // if (res.data.length >= 6) {setTeam(res.data);setLoading(false)}
 
     const fromBackend = async () => {
         try {
@@ -83,11 +80,12 @@ const SearchForm = () => {
 
     useEffect(() => {
         marvelCall()
+        console.log(team);
     }, [])
 
     return (
         <SearchGrid>
-            {loading ? (
+            {/* {loading ? ( */}
                 <>
                     <Wrapper>
                         <Form onSubmit={handleSubmit}>
@@ -113,7 +111,7 @@ const SearchForm = () => {
                         ))}
                     </Cards>
                 </>
-            ) : (
+            {/* ) : (
             <>
                 {team.map(hero => (
                     <div key={hero._id}>
@@ -121,7 +119,7 @@ const SearchForm = () => {
                     </div>
                 ))}
             </>
-            )}
+            )} */}
         </SearchGrid>
     )
 }
