@@ -8,7 +8,7 @@ const HamburgerMenu = ({ menu }) => {
             {menu ? (
                 <ul className='unorder'>
                     <li><a href="/home">Home</a></li>
-                    <li>Create</li>
+                    <li><a href='/create'>Create</a></li>
                     <li>Trivia</li>
                 </ul>
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Wrapper, Form, SearchGrid, Cards, Card, FormDiv } from './FormStyles'
 import axios from 'axios'
 
-const SearchForm = ({ id }) => {
+const SearchForm = () => {
     const init = {
         name: 'thanos'
     };
@@ -10,7 +10,9 @@ const SearchForm = ({ id }) => {
     const [userInput, setUserInput] = useState(init);
     const [res, setRes] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [team, setTeam] = useState([])
+    const [teams, setTeams] = useState([])
+    const [hero, setHero] = useState("");
+    const [test, setTest] = useState([])
     const ext = 'portrait_incredible.jpg';
     const privateKey = process.env.REACT_APP_MARVEL_KEY;
     const hash = process.env.REACT_APP_MARVEL_HASH;
@@ -19,7 +21,7 @@ const SearchForm = ({ id }) => {
         setUserInput({ ...userInput, [e.target.name]: e.target.value })
     }
 
-    const marvelCall = async input => {
+    const marvelCall = async () => {
         try {
             const search = await axios(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${userInput.name}&ts=1&apikey=${privateKey}&hash=${hash}`);
             const results = search.data.data.results
@@ -41,7 +43,11 @@ const SearchForm = ({ id }) => {
 
     const toBackend = async data => {
         try {
-            axios.post('http://localhost:9000/heros', { name: data })
+            const mongo = await axios.post('http://localhost:9000/heros', {
+                name: data.name,
+                description: data.description,
+                team: test
+            })
         } catch (error) {
             console.error(error);
         }
@@ -49,38 +55,47 @@ const SearchForm = ({ id }) => {
 
     const fromBackend = async () => {
         try {
-            const get = await axios('http://localhost:9000/heros');
-
-            if (get.data.length >= 5) {
-                setTeam(get.data)
-            }
+            const get = await axios('http://localhost:9000/team')
+            setTeams(get.data)
         } catch (error) {
             console.error(error);
         }
     }
-    fromBackend()
 
-    // const createTeam = async (name, members) => {
-    //     // const roles = {
-    //     //     leader: 'You',
-    //     //     captain:,
-    //     //     tank:,
-    //     //     healer:,
-    //     //     brawler:,
-    //     //     sniper:,
-    //     //     support:
-    //     // }
-    //     console.log(name, members, 'create');
-    //     // try {
-    //     //     axios.post('http://localhost:9000/team', { title: name, hero: members }).then((res) => console.log(res))
-    //     // } catch (error) {
-    //     //     console.error(error);
-    //     // }
-    // }
+    const filterByName = async name => {
+        try {
+            const get = await axios('http://localhost:9000/team')
+            const teamName = get.data.filter(team => team.title === name);
+            const teamID = teamName['0']._id;
+            setTest(teamID)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getHeroModel = async () => {
+        try {
+            const get = await axios('http://localhost:9000/heros')
+            const test = get.data
+            console.log(test, 'testing');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+    const selectedTeam = e => {
+        const selectedTeam = e.target.value;
+        // setHero(selectedTeam)
+        filterByName(selectedTeam)
+    }
+
 
     useEffect(() => {
         marvelCall()
-        console.log(team);
+        fromBackend()
+        getHeroModel()
+        // filterByName()
     }, [])
 
     return (
@@ -96,7 +111,12 @@ const SearchForm = ({ id }) => {
                         </Form>
                     </Wrapper>
                     <div>
-                        Select Team Members
+                        <label htmlFor="team-names"> Select Team Members For:</label>
+                        <select name="team-names" id="team-names" onChange={selectedTeam}>
+                            {teams.map(team => (
+                                <option key={team._id} onChange={selectedTeam} value={team.title}>{team.title}</option>
+                            ))}
+                        </select>
                     </div>
                     <Cards>
                         {res.map(hero => (
@@ -104,8 +124,8 @@ const SearchForm = ({ id }) => {
                                 <p>{hero.name}</p>
                                 <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
                                 <ul>
-                                    <li><button onClick={() => send(hero.name)}>Add</button></li>
-                                    <li><button>Details</button></li>
+                                    <li><button onClick={() => send(hero)}>Add</button></li>
+                                    <li><button onClick={() => test(hero.id)}>Details</button></li>
                                 </ul>
                             </Card>
                         ))}

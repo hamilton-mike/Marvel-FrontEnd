@@ -6,6 +6,7 @@ import App from './App';
 import Search from './pages/Search';
 import Home from './pages/Home';
 import Create from './pages/Create';
+import Edit from './pages/Edit';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
@@ -15,6 +16,8 @@ ReactDOM.render(
       <Route path="home" element={<Home />} />
       <Route path="create" element={<Create />} />
       <Route path="search" element={<Search />} />
+      <Route path="/create/team/:id" element={<Edit />} />
+
     </Routes>
   </BrowserRouter>, rootElement
 );
