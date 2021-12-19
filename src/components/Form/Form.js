@@ -9,10 +9,8 @@ const SearchForm = () => {
 
     const [userInput, setUserInput] = useState(init);
     const [res, setRes] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [teams, setTeams] = useState([])
-    const [hero, setHero] = useState("");
-    const [test, setTest] = useState([])
+    const [id, setID] = useState([])
     const ext = 'portrait_incredible.jpg';
     const privateKey = process.env.REACT_APP_MARVEL_KEY;
     const hash = process.env.REACT_APP_MARVEL_HASH;
@@ -26,7 +24,6 @@ const SearchForm = () => {
             const search = await axios(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${userInput.name}&ts=1&apikey=${privateKey}&hash=${hash}`);
             const results = search.data.data.results
             setRes(results)
-            setLoading(false)
         } catch (error) {
             console.error(error);
         }
@@ -46,7 +43,7 @@ const SearchForm = () => {
             const mongo = await axios.post('http://localhost:9000/heros', {
                 name: data.name,
                 description: data.description,
-                team: test
+                team: id
             })
         } catch (error) {
             console.error(error);
@@ -67,7 +64,7 @@ const SearchForm = () => {
             const get = await axios('http://localhost:9000/team')
             const teamName = get.data.filter(team => team.title === name);
             const teamID = teamName['0']._id;
-            setTest(teamID)
+            setID(teamID)
         } catch (error) {
             console.error(error);
         }
@@ -77,7 +74,6 @@ const SearchForm = () => {
         try {
             const get = await axios('http://localhost:9000/heros')
             const test = get.data
-            console.log(test, 'testing');
         } catch (error) {
             console.error(error);
         }
@@ -86,7 +82,6 @@ const SearchForm = () => {
 
     const selectedTeam = e => {
         const selectedTeam = e.target.value;
-        // setHero(selectedTeam)
         filterByName(selectedTeam)
     }
 
@@ -95,52 +90,43 @@ const SearchForm = () => {
         marvelCall()
         fromBackend()
         getHeroModel()
-        // filterByName()
+        filterByName()
     }, [])
 
     return (
-        <SearchGrid>
-            {/* {loading ? ( */}
-                <>
-                    <Wrapper>
-                        <Form onSubmit={handleSubmit}>
-                            <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
-                            <FormDiv style={{margin: '1em' }}>
-                                <input type="submit" value='submit'></input>
-                            </FormDiv>
-                        </Form>
-                    </Wrapper>
-                    <div>
-                        <label htmlFor="team-names"> Select Team Members For:</label>
-                        <select name="team-names" id="team-names" onChange={selectedTeam}>
-                            {teams.map(team => (
-                                <option key={team._id} onChange={selectedTeam} value={team.title}>{team.title}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <Cards>
-                        {res.map(hero => (
-                            <Card key={hero.id}>
-                                <p>{hero.name}</p>
-                                <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
-                                <ul>
-                                    <li><button onClick={() => send(hero)}>Add</button></li>
-                                    <li><button onClick={() => test(hero.id)}>Details</button></li>
-                                </ul>
-                            </Card>
+        <>
+            <SearchGrid>
+                <Wrapper>
+                    <Form onSubmit={handleSubmit}>
+                        <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
+                        <FormDiv style={{margin: '1em' }}>
+                            <input type="submit" value='submit'></input>
+                        </FormDiv>
+                    </Form>
+                </Wrapper>
+                <div>
+                    <label htmlFor="team-names"> Select Team Members For:</label>
+                    <select name="team-names" id="team-names" onChange={selectedTeam}>
+                        <option>Select Team</option>
+                        {teams.map(team => (
+                            <option key={team._id} value={team.title}>{team.title}</option>
                         ))}
-                    </Cards>
-                </>
-            {/* ) : (
-            <>
-                {team.map(hero => (
-                    <div key={hero._id}>
-                        <p>{hero.name}</p>
-                    </div>
-                ))}
-            </>
-            )} */}
-        </SearchGrid>
+                    </select>
+                </div>
+                <Cards>
+                    {res.map(hero => (
+                        <Card key={hero.id}>
+                            <p>{hero.name}</p>
+                            <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
+                            <ul>
+                                <li><button onClick={() => send(hero)}>Add</button></li>
+                                <li><button onClick={() => test(hero.id)}>Details</button></li>
+                            </ul>
+                        </Card>
+                    ))}
+                </Cards>
+            </SearchGrid>
+        </>
     )
 }
 

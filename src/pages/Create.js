@@ -8,7 +8,7 @@ const Create = () => {
         <>
             <Navbar />
             <Team />
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

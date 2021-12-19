@@ -9,10 +9,8 @@ export const Section = styled.section`
 
 export const ChilDiv = styled.div`
     border: 2px solid green;
-    padding: 1em;
-    // display: flex;
-    // justify-content: space-around;
-    // margin: auto;
+    padding: 0 1em;
+    margin: auto;
 
     p {
         flex: direction: column;
@@ -21,5 +19,7 @@ export const ChilDiv = styled.div`
 `;
 
 export const Modify = styled.div`
-    margin-top: 1em;
+    margin: 1em;
+    cursor: pointer;
+    max-width: 2em;
 `;

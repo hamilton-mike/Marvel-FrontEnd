@@ -6,11 +6,11 @@ import { Container, Grid } from '../../globalStyles'
 import { FiTrash2 } from 'react-icons/fi'
 import { AiOutlineEdit } from 'react-icons/ai'
 import axios from 'axios'
-import SearchForm from '../Form/Form'
 
 
 const Team = () => {
     const [teams, setTeams] = useState([]);
+    const [members, setMembers] = useState([]);
     const [count, setCount] = useState(0)
     const navigate = useNavigate();
 
@@ -25,8 +25,11 @@ const Team = () => {
 
     const fromBackend = async () => {
         try {
-            const get = await axios('http://localhost:9000/team')
-            setTeams(get.data)
+            const team = await axios('http://localhost:9000/team')
+            const hero = await axios('http://localhost:9000/heros')
+
+            setMembers(hero.data);
+            setTeams(team.data)
         } catch (error) {
             console.error(error);
         }
@@ -37,24 +40,53 @@ const Team = () => {
             const deleteTeam = await axios(`http://localhost:9000/team/${id}`, { method: "DELETE" });
             const deleted = deleteTeam.data;
             setTeams(teams.filter(team => team._id !== deleted._id))
+            deleteHeros(id)
         } catch (error) {
             console.error(error);
         }
     }
 
-    const members = () => {
+    const deleteHeros = async id => {
+        try {
+            const ids = [];
+            console.log(id, 'id');
+            const getHeros = await axios('http://localhost:9000/heros');
+            const matchIds = getHeros.data.map(hero => hero);
+
+            for (let i = 0; i < matchIds.length; i++) {
+                let heroObj = matchIds[i];
+
+                if (heroObj.team == id) {
+                    ids.push(heroObj._id)
+                }
+            }
+
+            const promise = ids.map(async id => axios(`http://localhost:9000/heros/${id}`))
+            await Promise.all(promise)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const fitlerByTeam = async id => {
+        console.log(id, 'team id');
+        // setList(members.filter(member => member.team === id))
+        // <button onClick={() => fitlerByTeam(team._id)}>Members</button>
+        {/* <button onClick={editMembers}>Edit</button> */}
+    }
+
+    const search = () => {
         navigate('/search')
     }
 
-    // const addMembers = id => {
-    //     navigate(`/team/${id}`)
-    // }
+    const details = id => {
+        return (<Link to={`team/${id._id}`}></Link>)
+    }
 
     useEffect(() => {
         fromBackend()
-    }, [count])
+    }, [count, teams])
 
-    console.log(teams, 'really');
     return (
         <Section>
             <Container>
@@ -69,24 +101,16 @@ const Team = () => {
                     {teams.map(team => (
                         <ChilDiv key={team._id}>
                             <p>{team.title}</p>
-                            {/* {team.hero.map(heros => (
-                                <>
-                                    <div key={heros._id}>
-                                        <p>{heros.name}</p>
-                                    </div>
-                                    <Modify className="edit">
-                                        <FiTrash2 size={25} />
-                                        <AiOutlineEdit size={25} onClick={() => editTeam(team._id)} />
-                                    </Modify>
-                                </>
-                            ))} */}
-                        <Link to={`team/${team._id}}`}>Edit</Link>
-                        <button onClick={() => deleteTeam(team._id)}>X</button>
-                        {/* <button onClick={editMembers}>Edit</button> */}
+                            <Modify>
+                                <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to={`team/${team._id}`}>
+                                    <AiOutlineEdit size={30} />
+                                </Link>
+                                <FiTrash2 size={30} onClick={() => deleteTeam(team._id)} />
+                            </Modify>
                         </ChilDiv>
                     ))}
                 </Grid>
-                <button onClick={members}>Research</button>
+                <button onClick={search}>Research</button>
             </Container>
         </Section>
     )
