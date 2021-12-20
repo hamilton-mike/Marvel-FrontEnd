@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Wrapper, Form, SearchGrid, Cards, Card, FormDiv } from './FormStyles'
 import axios from 'axios'
 
@@ -10,7 +11,7 @@ const SearchForm = () => {
     const [userInput, setUserInput] = useState(init);
     const [res, setRes] = useState([]);
     const [teams, setTeams] = useState([])
-    const [id, setID] = useState([])
+    const [id, setId] = useState([])
     const ext = 'portrait_incredible.jpg';
     const privateKey = process.env.REACT_APP_MARVEL_KEY;
     const hash = process.env.REACT_APP_MARVEL_HASH;
@@ -63,21 +64,21 @@ const SearchForm = () => {
         try {
             const get = await axios('http://localhost:9000/team')
             const teamName = get.data.filter(team => team.title === name);
-            const teamID = teamName['0']._id;
-            setID(teamID)
+            const teamId = teamName['0']._id;
+            setId(teamId)
         } catch (error) {
             console.error(error);
         }
     }
 
-    const getHeroModel = async () => {
+    /* const getHeroModel = async () => {
         try {
             const get = await axios('http://localhost:9000/heros')
             const test = get.data
         } catch (error) {
             console.error(error);
         }
-    }
+    }*/
 
 
     const selectedTeam = e => {
@@ -89,7 +90,7 @@ const SearchForm = () => {
     useEffect(() => {
         marvelCall()
         fromBackend()
-        getHeroModel()
+        // getHeroModel()
         filterByName()
     }, [])
 
@@ -120,7 +121,7 @@ const SearchForm = () => {
                             <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
                             <ul>
                                 <li><button onClick={() => send(hero)}>Add</button></li>
-                                <li><button onClick={() => test(hero.id)}>Details</button></li>
+                                <li><Link to={`heros/${hero.id}`}>Details</Link></li>
                             </ul>
                         </Card>
                     ))}

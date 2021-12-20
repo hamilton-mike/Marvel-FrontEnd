@@ -7,6 +7,7 @@ import Search from './pages/Search';
 import Home from './pages/Home';
 import Create from './pages/Create';
 import Edit from './pages/Edit';
+import HeroDetail from './pages/HeroDetail'
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
@@ -17,7 +18,7 @@ ReactDOM.render(
       <Route path="create" element={<Create />} />
       <Route path="search" element={<Search />} />
       <Route path="/create/team/:id" element={<Edit />} />
-
+      <Route path="search/heros/:id" element={<HeroDetail />} />
     </Routes>
   </BrowserRouter>, rootElement
 );
