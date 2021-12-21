@@ -14,6 +14,7 @@ const Team = () => {
     const [count, setCount] = useState(0)
     const navigate = useNavigate();
 
+
     const createTeam = async () => {
         try {
             const team = await axios.post('http://localhost:9000/team', { title: 'default' })
@@ -40,50 +41,40 @@ const Team = () => {
             const deleteTeam = await axios(`http://localhost:9000/team/${id}`, { method: "DELETE" });
             const deleted = deleteTeam.data;
             setTeams(teams.filter(team => team._id !== deleted._id))
-            deleteHeros(id)
+            // deleteHeros(id)
         } catch (error) {
             console.error(error);
         }
     }
 
-    const deleteHeros = async id => {
-        try {
-            const ids = [];
-            console.log(id, 'id');
-            const getHeros = await axios('http://localhost:9000/heros');
-            const matchIds = getHeros.data.map(hero => hero);
+    // const deleteHeros = async id => {
+    //     try {
+    //         const ids = [];
+    //         console.log(id, 'id');
+    //         const getHeros = await axios('http://localhost:9000/heros');
+    //         const matchIds = getHeros.data.map(hero => hero);
 
-            for (let i = 0; i < matchIds.length; i++) {
-                let heroObj = matchIds[i];
+    //         for (let i = 0; i < matchIds.length; i++) {
+    //             let heroObj = matchIds[i];
 
-                if (heroObj.team == id) {
-                    ids.push(heroObj._id)
-                }
-            }
+    //             if (heroObj.team == id) {
+    //                 ids.push(heroObj._id)
+    //             }
+    //         }
 
-            const promise = ids.map(async id => axios(`http://localhost:9000/heros/${id}`))
-            await Promise.all(promise)
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    const fitlerByTeam = async id => {
-        console.log(id, 'team id');
-        // setList(members.filter(member => member.team === id))
-        // <button onClick={() => fitlerByTeam(team._id)}>Members</button>
-        {/* <button onClick={editMembers}>Edit</button> */}
-    }
+    //         const promise = ids.map(async id => axios(`http://localhost:9000/heros/${id}`))
+    //         await Promise.all(promise)
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     const search = () => {
         navigate('/search')
     }
 
-    const details = id => {
-        return (<Link to={`team/${id._id}`}></Link>)
-    }
-
     useEffect(() => {
+        createTeam()
         fromBackend()
     }, [count, teams])
 
