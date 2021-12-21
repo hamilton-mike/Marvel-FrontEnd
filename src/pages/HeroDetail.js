@@ -20,20 +20,15 @@ const HeroDetail = props => {
     const marvelCall = async () => {
         try {
             const charcterById = await axios(`https://gateway.marvel.com/v1/public/characters/${x}?ts=1&apikey=${privateKey}&hash=${hash}`);
+            // const charcterById = await axios('http://localhost:9000')
             const results = charcterById.data.data.results["0"];
             const { comics, description, events, id, name, series, stories, thumbnail, urls } = results
             const comicCovers = comics.items.map(ids => ids.resourceURI.slice(-5));
 
-            setProfile({ event: events.items, pic: thumbnail, name: name, origin: description, links: urls, id: id })
-            setLoading(false)
-            const configs = {
-                header: {
-                    'Access-Control-Allow-Origin': '*',
-                    'mode': 'no-cors'
-                }
-            }
-            console.log(x, 'id');
-            const promise = comicCovers.map(async cover => axios(`https://gateway.marvel.com/v1/public/characters/${x}/${cover}?ts=1&apikey=${privateKey}&hash=${hash}`), configs);
+            setProfile({ comics: comics, event: events.items, pic: thumbnail, name: name, origin: description, links: urls, id: id })
+
+            const promise = comicCovers.map(async cover => axios(`https://gateway.marvel.com/v1/public/comics/${cover}?ts=1&apikey=${privateKey}&hash=${hash}`));
+
             const comicResults = await Promise.all(promise)
             console.log(comicResults, 'covers')
             // Access to XMLHttpRequest at 'axios call' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
@@ -44,6 +39,8 @@ const HeroDetail = props => {
             console.error(error);
         }
     }
+
+
 
     useEffect(() => {
         marvelCall()
