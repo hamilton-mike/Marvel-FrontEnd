@@ -27,7 +27,7 @@ const Team = () => {
     const fromBackend = async () => {
         try {
             const team = await axios('http://localhost:9000/team')
-            const hero = await axios('http://localhost:9000/heros')
+            const hero = await axios('http://localhost:9000/hero')
 
             setMembers(hero.data);
             setTeams(team.data)

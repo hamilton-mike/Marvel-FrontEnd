@@ -48,7 +48,6 @@ const Edit = () => {
         fromBackend()
     }, [])
 
-
     return (
         <>
             <Navbar />

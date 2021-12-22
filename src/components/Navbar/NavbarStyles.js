@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Nav = styled.nav`
-    background-color: #007fc7;
-    color: white;
+    background-color: #F1F1F1;
+    color: #f24437;
     width: 100%;
     padding: 1em;
-    border: 2px solid yellow;
+    border: 1em solid #323232;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -21,7 +21,13 @@ export const Nav = styled.nav`
 
     a {
         text-decoration: none;
-        color: inherit;
+        color: #f24437;
+
+        &:hover {
+            color: #323232;
+            text-decoration: underline;
+
+        }
     }
 
     li:hover {
@@ -57,14 +63,14 @@ export const Nav = styled.nav`
 
 export const Hamburger = styled.ul`
     height: 100vh;
-    width: 100vw;
-    padding-top: 6em;
+    max-width: 40em;
+    width: 70%;
+    padding-top: 5em;
 
     li, a {
         justify-content: center;
         display: flex;
-        align-items: center;
-        font-size: 4rem;
+        font-size: 3rem;
     }
 
     @media (max-width: 600px) {

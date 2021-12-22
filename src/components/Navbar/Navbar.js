@@ -2,7 +2,6 @@ import React, { useState }from 'react'
 import logo from '../../img/marvelLogo.jpg'
 import { Nav } from './NavbarStyles'
 import { GiHamburgerMenu, GiExitDoor } from 'react-icons/gi'
-
 import HamburgerMenu from './HamburgerMenu'
 
 const Navbar = () => {
@@ -23,10 +22,10 @@ const Navbar = () => {
                     <HamburgerMenu menu={menu} />
                 </>
             ) : (
-                <>
-                    <HamburgerMenu menu={menu} />
+                <div style={{ flexDirection: 'column' }}>
                     <GiExitDoor onClick={toggle} size={100}/>
-                </>
+                    <HamburgerMenu menu={menu} />
+                </div>
             )}
 
         </Nav>

@@ -6,6 +6,8 @@ export const Container = styled.div`
     width: 85%;
     margin: 0 auto;
     overflow: hidden;
+    background: #323232;
+;
 `;
 
 export const HeadingOne = styled.h1`
@@ -30,3 +32,9 @@ export const Grid = styled.div`
         grid-template-columns: repeat(1, 1fr);
     }
 `;
+
+// #323232
+// #BAB9B9
+// #E4E4E4
+// #F1F1F1
+// #F5F6F8

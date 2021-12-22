@@ -18,7 +18,7 @@ ReactDOM.render(
       <Route path="create" element={<Create />} />
       <Route path="search" element={<Search />} />
       <Route path="/create/team/:id" element={<Edit />} />
-      <Route path="search/heros/:id" element={<HeroDetail />} />
+      <Route path="search/hero/:id" element={<HeroDetail />} />
     </Routes>
   </BrowserRouter>, rootElement
 );

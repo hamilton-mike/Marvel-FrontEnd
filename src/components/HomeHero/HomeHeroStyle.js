@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const HomeDiv = styled.div`
     width: 100%;
-    max-width: 94em;
+    max-width: 74em;
     margin: 0 auto;
-    background-color: grey;
+    background-color: #BAB9B9;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -20,8 +20,12 @@ export const HomeDiv = styled.div`
         padding: 0 1em;
     }
 
+    div > h1 {
+        font-size: 1.5em;
+    }
+
     img {
-        margin-top: 1em;
+        margin-top: 2em;
         width: 100%;
         height: auto;
     }
@@ -32,10 +36,27 @@ export const HomeDiv = styled.div`
         padding-top: 20%;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
         padding-top: 40%;
     }
 
+    @media (max-width: 415px) {
+        padding-top: 60%;
+    }
+
+    @media (max-width: 360px) {
+        img {
+            display: none;
+        }
+    }
+
+     @media (max-width: 320px) {
+        padding-top: 80%;
+
+        div > p {
+            font-size: 0.8em;
+        }
+    }
 `;
 
 
@@ -55,5 +76,13 @@ export const Button = styled.button`
     &:active {
         position:relative;
         top:1px;
+    }
+
+    @media (max-width: 360px) {
+        height: 50px;
+
+        a {
+            font-size: 0.7em;
+        }
     }
 `;

@@ -9,13 +9,13 @@ export const Image = styled.img`
 `;
 
 
-    export const Div = styled.div`
-    margin: 0 auto;
+export const Div = styled.div`
     padding: 2em;
-    background-color: #007fc7;
+    background-color: #BAB9B9;
     outline: 10px solid #000;
     max-width: 100%
     width: 85%;
+    margin: 0 auto;
 
     h3, p {
         margin: 0.7em 0;
@@ -42,5 +42,5 @@ export const Li = styled.li`
     display: inline-block;
     list-style-type: none;
     margin: 0.3em;
-    box-shadow: 2px 2px 0px 0px #289FED, 5px 5px 0px 0px #5FB8FF
+    box-shadow: 2px 2px 0px 0px #F1F1F1, 5px 5px 0px 0px #f24437;
 `;

@@ -41,7 +41,7 @@ const SearchForm = () => {
 
     const toBackend = async data => {
         try {
-            const mongo = await axios.post('http://localhost:9000/heros', {
+            const mongo = await axios.post('http://localhost:9000/hero', {
                 name: data.name,
                 description: data.description,
                 team: id
@@ -121,7 +121,7 @@ const SearchForm = () => {
                             <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
                             <ul>
                                 <li><button onClick={() => send(hero)}>Add</button></li>
-                                <li><Link to={`heros/${hero.id}`}>Details</Link></li>
+                                <li><Link to={`hero/${hero.id}`}>Details</Link></li>
                             </ul>
                         </Card>
                     ))}

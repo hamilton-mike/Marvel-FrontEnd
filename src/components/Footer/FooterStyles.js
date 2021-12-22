@@ -5,8 +5,11 @@ export const StyleFooter = styled.footer`
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    border: 2px solid red;
     position: sticky;
+    border: 1em solid #323232;
+    background-color: #F1F1F1;
+
+
 
     ul {
         display: flex;
@@ -21,10 +24,10 @@ export const StyleFooter = styled.footer`
 
     a {
         text-decoration: none;
-        color: red;
+        color: #f24437;
 
         &:hover {
-            color: black;
+            color: #323232;
             text-decoration: underline;
 
         }

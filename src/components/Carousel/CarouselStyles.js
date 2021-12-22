@@ -7,13 +7,15 @@ export const Image = styled.img`
 export const CarouselDiv = styled.div`
     display: flex;
     justify-content: center;
-    max-width: 100%
-    width: 85%;
+    max-width: 100%;
     overflow: hidden;
-    border: 2rem solid orange;
-    background-color: black;
-    margin: 0 5em;
+    border: 2rem solid #BAB9B9;
+    background-color: #323232;
+    margin: 0 auto;
 
+    @media (max-width: 415px) {
+        border: 0.5rem solid #BAB9B9;
+    }
 `;
 
 export const UnorderList = styled.ul`

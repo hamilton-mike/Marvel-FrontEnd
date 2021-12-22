@@ -6,6 +6,7 @@ import CRUD from '../components/CRUD/CRUD'
 import HomeHero from '../components/HomeHero/HomeHero'
 import Footer from '../components/Footer/Footer'
 import axios from 'axios'
+import { Container } from '../globalStyles'
 
 
 const Home = () => {
@@ -41,10 +42,12 @@ const Home = () => {
     return (
         <>
             <Navbar />
-            <HomeHero />
-            <Carousel marvel={carousel} loading={loading} />
-            <CRUD />
-            <InfoDiv marvel={cards} loading={loading} />
+            <Container>
+                <HomeHero />
+                <Carousel marvel={carousel} loading={loading} />
+                <CRUD />
+                <InfoDiv marvel={cards} loading={loading} />
+            </Container>
             <Footer />
         </>
     )
