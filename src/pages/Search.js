@@ -14,7 +14,7 @@ const Search = () => {
                 <HomeDiv>
                     <div style={{ paddingTop: '5%' }}>
                         <h1>Welcome to S.H.I.E.L.D's database</h1>
-                        <p>Here you can start your research</p>
+                        <p>Start your research here</p>
                     </div>
                     <div>
                         <img style={{borderRadius: '1rem'}} src={bubble} alt='Stategic Homeland Intervention Enforcement Logistics Division'/>
