@@ -51,7 +51,7 @@ const Edit = () => {
     return (
         <>
             <Navbar />
-            <Container style={{ paddingTop: '10%' }}>
+            <Container style={{ paddingTop: '20%' }}>
                 <form onSubmit={handleSubmit}>
                     <label>Edit</label>
                     <input type="text" id='title' name='title' onChange={handleChange} />

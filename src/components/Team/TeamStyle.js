@@ -1,16 +1,25 @@
 import styled from 'styled-components'
 
 export const Section = styled.section`
-    height: 82.5vh;
-    padding-top: 10%;
-    padding: 5em;
-    border: 2px solid green;
+    color: white;
+`;
+
+export const FlexDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 2em;
+`;
+
+export const Line = styled.div`
+    border: 2px solid blue;
 `;
 
 export const ChilDiv = styled.div`
-    border: 2px solid green;
+    outline: 10px solid #000;
+    background-color: #BAB9B9;
     padding: 0 1em;
     margin: auto;
+    color: #323232;
 
     p {
         flex: direction: column;

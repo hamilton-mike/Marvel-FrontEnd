@@ -7,12 +7,14 @@ import { HomeDiv } from '../components/HomeHero/HomeHeroStyle'
 import bubble from '../img/bubble.jpg'
 
 const Search = () => {
+
+
     return (
         <div>
             <Navbar />
             <Container>
                 <HomeDiv>
-                    <div style={{ paddingTop: '5%' }}>
+                    <div style={{ paddingTop: '5%'}}>
                         <h1>Welcome to S.H.I.E.L.D's database</h1>
                         <p>Start your research here</p>
                     </div>

@@ -13,7 +13,7 @@ export const HomeDiv = styled.div`
 
     a {
         text-decoration: none;
-        color: black;
+        color: white;
     }
 
     div {

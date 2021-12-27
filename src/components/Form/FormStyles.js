@@ -2,43 +2,41 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     display: flex;
-    justify-content: center;
-    padding-bottom: 4em;
+    justify-content: space-around;
+    padding-bottom: 1em;
     width: 100%;
+`;
+
+export const Select = styled.select`
+    margin: 1em;
+`;
+
+export const Div = styled.div`
+    padding: 1em;
 `;
 
 export const Form = styled.form`
     padding-left: 1em;
     border-radius: 2rem;
-    background-color: red;
+    background-color: #F1F1F1;
+;
     display: flex;
     align-items: center;
 `;
 
-export const FormDiv = styled.div`
-    background-color: green;
-    padding: 0.4em;
-    border-radius: 3rem;
-
-    &:hover {
-        background-color: yellow;
-    }
-`;
-
 export const SearchGrid = styled.div`
     padding: 6em 2em 2em 2em;
+    color: white;
 `;
 
 export const Cards = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border: 3px solid brown;
 `;
 
 export const Card = styled.div`
     align-content: center;
     text-align: center;
-    border: 3px solid brown;
 
     ul {
         display: none;
@@ -47,10 +45,17 @@ export const Card = styled.div`
     li {
         list-style-type: none;
     }
+
+    a {
+        text-decoration: none;
+        color: white;
+
+    }
+
     button {
         border-radius: 2rem;
         padding: 0.3em;
-        color: blue;
+        color: white;
         cursor: pointer;
     }
 
@@ -76,7 +81,6 @@ export const Card = styled.div`
         animation: myAnim 2s ease-in-out 0s 1 normal forwards;
 
     }
-
 
     @keyframes myAnim {
         0%, 50%, 100% { opacity: 1; }

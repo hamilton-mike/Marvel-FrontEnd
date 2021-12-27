@@ -32,9 +32,3 @@ export const Grid = styled.div`
         grid-template-columns: repeat(1, 1fr);
     }
 `;
-
-// #323232
-// #BAB9B9
-// #E4E4E4
-// #F1F1F1
-// #F5F6F8

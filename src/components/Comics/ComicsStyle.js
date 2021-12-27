@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 
-export const comicDiv = styled.div`
-    img {
-        width: 100%;
-    }
+export const DivComic = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BAB9B9;
+    outline: 10px solid #000;
 
     p {
-        color: red;
+        padding: 1em;
+    }
+
+    img {
+        max-width: 100%;
     }
 `;

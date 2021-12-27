@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BsPlusLg } from 'react-icons/bs'
-import { Section, ChilDiv, Modify } from './TeamStyle';
+import { Section, ChilDiv, Modify, FlexDiv, Line } from './TeamStyle';
 import { Container, Grid } from '../../globalStyles'
 import { FiTrash2 } from 'react-icons/fi'
 import { AiOutlineEdit } from 'react-icons/ai'
@@ -12,9 +12,8 @@ const Team = () => {
     const [teams, setTeams] = useState([]);
     const [members, setMembers] = useState([]);
     const [count, setCount] = useState(0)
-    const navigate = useNavigate();
     const team_URL = 'http://localhost:9000/team/';
-    const hero_URL = 'http://localhost:9000/hero'
+    const hero_URL = 'http://localhost:9000/hero/'
 
 
     const createTeam = async () => {
@@ -42,53 +41,41 @@ const Team = () => {
             const deleteTeam = await axios(`${team_URL}${id}`, { method: "DELETE" });
             const deleted = deleteTeam.data;
             setTeams(teams.filter(team => team._id !== deleted._id))
-            // deleteHeros(id)
+            deleteHeros(id)
         } catch (error) {
             console.error(error);
         }
     }
 
-    // const deleteHeros = async id => {
-    //     try {
-    //         const ids = [];
-    //         console.log(id, 'id');
-    //         const getHeros = await axios('http://localhost:9000/heros');
-    //         const matchIds = getHeros.data.map(hero => hero);
-
-    //         for (let i = 0; i < matchIds.length; i++) {
-    //             let heroObj = matchIds[i];
-
-    //             if (heroObj.team == id) {
-    //                 ids.push(heroObj._id)
-    //             }
-    //         }
-
-    //         const promise = ids.map(async id => axios(`http://localhost:9000/heros/${id}`))
-    //         await Promise.all(promise)
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
-    const search = () => {
-        navigate('/search')
+    const deleteHeros = async id => {
+        try {
+            const getRequest = await axios(`${hero_URL}`);
+            const heroesArray = getRequest.data;
+            const arrayFilterByTeam =  heroesArray.filter(obj => obj.team === id)
+            arrayFilterByTeam.map(async obj => {
+                await axios(`${hero_URL}${obj._id}`, { method: "DELETE" })
+            })
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
         fromBackend()
+        deleteHeros()
     }, [count])
 
     return (
         <Section>
             <Container>
-                <div style={{ display: 'flex', justifyContent: 'space-around', padding: '1em' }}>
+                <FlexDiv>
                     <div>
                         <h1>Create a Team</h1>
-                        <div style={{ border: '2px solid blue' }}></div>
+                        <Line></Line>
                     </div>
                     <BsPlusLg size={70} onClick={createTeam} style={{ cursor: 'pointer' }}/>
-                </div>
-                <Grid style={{ border: '2px solid orange' }}>
+                </FlexDiv>
+                <Grid>
                     {teams.map(team => (
                         <ChilDiv key={team._id}>
                             <p>{team.title}</p>
@@ -101,7 +88,6 @@ const Team = () => {
                         </ChilDiv>
                     ))}
                 </Grid>
-                <button onClick={search}>Research</button>
             </Container>
         </Section>
     )

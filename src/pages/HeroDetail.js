@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../components/Navbar/Navbar'
-import Footer from '../components/Footer/Footer'
-import { HomeDiv, Button } from '../components/HomeHero/HomeHeroStyle'
-import { Container, Grid } from '../globalStyles'
 import { useParams } from 'react-router-dom'
+import Navbar from '../components/Navbar/Navbar'
 import Comics from '../components/Comics/Comics';
+import Loading from '../components/Loading/Loading'
+import Events from '../components/Events/Events';
+import Links from '../components/Links/Links';
+import Footer from '../components/Footer/Footer'
+import { HomeDiv } from '../components/HomeHero/HomeHeroStyle'
+import { Container, Grid } from '../globalStyles'
 import { Li, UnOrder } from '../components/InfoDiv/InfoDivStyles'
+import { H2 } from '../components/Events/EventsStyle';
 import axios from 'axios'
 
 const HeroDetail = () => {
@@ -43,55 +47,49 @@ const HeroDetail = () => {
                 event: events.items
             }
 
-            urls.pop()
+            // urls.pop()
 
             setProfile({ comics: comicObj, events: eventObj, id: id, links: urls, name: name, origin: description, pic: thumbnail, stories: stories.available })
+            displayEvents(profile.events)
             setLoading(false)
         } catch (error) {
             console.error(error);
         }
     }
-    console.log(profile);
+
+    const displayEvents = obj => {
+        return (obj.num <= 13) ? obj.num : obj.event / 2;
+    }
 
     useEffect(() => {
         marvelCall()
     }, [])
 
+    console.log(displayEvents());
     return (
         <>
             <Navbar />
-            {loading ? <h1> loading </h1> : (
+            {loading ? (<Loading />) : (
                 <Container>
                     <HomeDiv style={{ paddingTop: '7%' }}>
                         <div>
                             <img src={`${profile.pic.path}/${ext}`} alt={profile.name}/>
-                            <Button><a href="/create">Create</a></Button>
-                            <Button><a href="/search">Search</a></Button>
                         </div>
                         <div style={{ margin: '2em', border: '2px solid green', maxWidth: '40%' }}>
                             <p>{profile.origin === '' ? 'The Team is working on this!' : profile.origin}</p>
                             <UnOrder>
                                 <Li>Comics: {profile.comics.num}</Li>
-                                <Li>Stories: {profile.events.num}</Li>
-                                <Li>Events: {profile.stories}</Li>
+                                <Li>Stories: {profile.stories}</Li>
+                                <Li>Events: {profile.events.num}</Li>
                             </UnOrder>
                         </div>
                     </HomeDiv>
+                    <Events events={profile.events.event} num={displayEvents}/>
+                    <H2>Comics</H2>
                     <Grid>
                         <Comics comics={profile.comics.comic} img={`${ext}`} />
-
-                        {profile.events.event.map(event => (
-                            <div key={event.resourceURI.slice(-3)}>
-                                <p>{event.name}</p>
-                            </div>
-                        ))}
-
-                        {profile.links.map(link => (
-                            <div key={link.type}>
-                                <a href={link.url} target="_blank" rel='noopener noreferre'>{link.type === 'detail' ? 'Archives' : 'Full Report'}</a>
-                            </div>
-                        ))}
                     </Grid>
+                    <Links urls={profile.links}/>
                 </Container>
             )}
           <Footer />
