@@ -7,7 +7,7 @@ import Events from '../components/Events/Events';
 import Links from '../components/Links/Links';
 import Footer from '../components/Footer/Footer'
 import { HomeDiv } from '../components/HomeHero/HomeHeroStyle'
-import { Container, Grid } from '../globalStyles'
+import { Container, Grid, HeroDescription, HeroImg } from '../globalStyles'
 import { Li, UnOrder } from '../components/InfoDiv/InfoDivStyles'
 import { H2 } from '../components/Events/EventsStyle';
 import axios from 'axios'
@@ -47,44 +47,38 @@ const HeroDetail = () => {
                 event: events.items
             }
 
-            // urls.pop()
-
             setProfile({ comics: comicObj, events: eventObj, id: id, links: urls, name: name, origin: description, pic: thumbnail, stories: stories.available })
-            displayEvents(profile.events)
             setLoading(false)
         } catch (error) {
             console.error(error);
         }
     }
 
-    const displayEvents = obj => {
-        return (obj.num <= 13) ? obj.num : obj.event / 2;
-    }
-
     useEffect(() => {
         marvelCall()
     }, [])
 
-    console.log(displayEvents());
+    const bio = profile.origin === '' ? `Description for ${profile.name} is unknown` : profile.origin;
+
     return (
         <>
             <Navbar />
             {loading ? (<Loading />) : (
                 <Container>
-                    <HomeDiv style={{ paddingTop: '7%' }}>
-                        <div>
+                    <HomeDiv>
+                        <HeroImg>
                             <img src={`${profile.pic.path}/${ext}`} alt={profile.name}/>
-                        </div>
-                        <div style={{ margin: '2em', border: '2px solid green', maxWidth: '40%' }}>
-                            <p>{profile.origin === '' ? 'The Team is working on this!' : profile.origin}</p>
+                        </HeroImg>
+                        <HeroDescription>
+                            <p>{bio}</p>
                             <UnOrder>
                                 <Li>Comics: {profile.comics.num}</Li>
                                 <Li>Stories: {profile.stories}</Li>
                                 <Li>Events: {profile.events.num}</Li>
                             </UnOrder>
-                        </div>
+                        </HeroDescription>
                     </HomeDiv>
-                    <Events events={profile.events.event} num={displayEvents}/>
+                    <Events events={profile.events.event} />
                     <H2>Comics</H2>
                     <Grid>
                         <Comics comics={profile.comics.comic} img={`${ext}`} />

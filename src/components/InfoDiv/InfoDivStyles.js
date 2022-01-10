@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Image = styled.img`
     border-radius: 1rem;
+    cursor: pointer;
     max-width: 100%;
     @media (max-width:900px) {
         height: 8rem;

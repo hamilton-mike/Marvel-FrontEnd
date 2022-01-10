@@ -11,12 +11,8 @@ export const Select = styled.select`
     margin: 1em;
 `;
 
-export const Div = styled.div`
-    padding: 1em;
-`;
-
 export const Form = styled.form`
-    padding-left: 1em;
+    padding: 1em;
     border-radius: 2rem;
     background-color: #F1F1F1;
 ;

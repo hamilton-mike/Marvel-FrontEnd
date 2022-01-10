@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Wrapper, Form, SearchGrid, Cards, Card, Select, Div } from './FormStyles'
+import { Wrapper, Form, SearchGrid, Cards, Card, Select } from './FormStyles'
 import { Button } from '../HomeHero/HomeHeroStyle'
 import axios from 'axios'
 
 const SearchForm = () => {
     const init = {
-        name: 'thanos'
+        name: ''
     };
 
     const [userInput, setUserInput] = useState(init);
@@ -38,6 +38,7 @@ const SearchForm = () => {
 
     const send = heroObj => {
         toBackend(heroObj)
+        console.log(heroObj, 'xyz');
     }
 
     const toBackend = async data => {
@@ -45,7 +46,12 @@ const SearchForm = () => {
             const mongo = await axios.post('http://localhost:9000/hero', {
                 name: data.name,
                 description: data.description,
-                team: id
+                team: id,
+                marvel: data.id,
+                comics: data.comics.available,
+                events: data.events.available,
+                stories: data.stories.available,
+                thumbnail: data.thumbnail.path
             })
         } catch (error) {
             console.error(error);
@@ -98,10 +104,10 @@ const SearchForm = () => {
                         </Select>
                     </div>
                     <Form onSubmit={handleSubmit}>
-                        <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
-                        <Div>
-                            <input type="submit" value='submit'></input>
-                        </Div>
+                        <div>
+                            <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
+                            <Button type="submit" value='submit'>Submit</Button>
+                        </div>
                     </Form>
                 </Wrapper>
                 <Cards>

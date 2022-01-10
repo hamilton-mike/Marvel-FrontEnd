@@ -66,6 +66,7 @@ export const Button = styled.button`
     border-radius: 0.3rem;
     padding: 0.2em;
     margin-top: 0.5em;
+   color: white;
 
     &:hover {
         cursor: pointer;

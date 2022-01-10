@@ -9,6 +9,7 @@ const HamburgerMenu = ({ menu }) => {
                 <ul className='unorder'>
                     <li><a href="/home">Home</a></li>
                     <li><a href='/create'>Create</a></li>
+                    <li><a href='/search'>Search</a></li>
                     <li><a href='#'>Trivia</a></li>
                 </ul>
 
@@ -16,6 +17,7 @@ const HamburgerMenu = ({ menu }) => {
             <Hamburger>
                 <li><a href="/home">Home</a></li>
                 <li><a href='/create'>Create</a></li>
+                <li><a href='/search'>Search</a></li>
                 <li><a href='#'>Trivia</a></li>
             </Hamburger>)}
         </>

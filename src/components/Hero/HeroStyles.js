@@ -7,7 +7,7 @@ export const HeroDiv = styled.div`
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border: 1rem groove #fa0874;
+    border: 1rem groove #8a2a21;
     background-color: black;
 `;
 
@@ -26,16 +26,4 @@ export const LinkWrapper = styled.div`
     display: flex;
     justify-content: space-around;
 
-`;
-
-export const Button = styled.button`
-    cursor: pointer;
-    padding: 1em 2em;
-    border-radius: 2rem;
-    background-color: #6d6e70;
-
-    a {
-       text-decoration: none;
-       color: #f4a500;
-    }
 `;

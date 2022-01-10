@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BsPlusLg } from 'react-icons/bs'
 import { Section, ChilDiv, Modify, FlexDiv, Line } from './TeamStyle';
 import { Container, Grid } from '../../globalStyles'
@@ -9,6 +9,7 @@ import axios from 'axios'
 
 
 const Team = () => {
+    const navigate = useNavigate();
     const [teams, setTeams] = useState([]);
     const [members, setMembers] = useState([]);
     const [count, setCount] = useState(0)
@@ -51,13 +52,17 @@ const Team = () => {
         try {
             const getRequest = await axios(`${hero_URL}`);
             const heroesArray = getRequest.data;
-            const arrayFilterByTeam =  heroesArray.filter(obj => obj.team === id)
+            const arrayFilterByTeam = heroesArray.filter(obj => obj.team === id);
             arrayFilterByTeam.map(async obj => {
                 await axios(`${hero_URL}${obj._id}`, { method: "DELETE" })
-            })
+            });
         } catch (error) {
             console.error(error);
         }
+    }
+
+    const teamDetail = id => {
+        navigate(`team/${id}`)
     }
 
     useEffect(() => {
@@ -80,9 +85,7 @@ const Team = () => {
                         <ChilDiv key={team._id}>
                             <p>{team.title}</p>
                             <Modify>
-                                <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to={`team/${team._id}`}>
-                                    <AiOutlineEdit size={30} />
-                                </Link>
+                                <AiOutlineEdit size={30} onClick={() => teamDetail(team._id)} />
                                 <FiTrash2 size={30} onClick={() => deleteTeam(team._id)} />
                             </Modify>
                         </ChilDiv>

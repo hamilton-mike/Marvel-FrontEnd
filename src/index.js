@@ -6,10 +6,12 @@ import App from './App';
 import Search from './pages/Search';
 import Home from './pages/Home';
 import Create from './pages/Create';
-import Edit from './pages/Edit';
+import TeamDetail from './pages/TeamDetail';
 import HeroDetail from './pages/HeroDetail'
+import Edit from './pages/Edit'
 
 const rootElement = document.getElementById('root');
+
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
@@ -17,8 +19,9 @@ ReactDOM.render(
       <Route path="home" element={<Home />} />
       <Route path="create" element={<Create />} />
       <Route path="search" element={<Search />} />
-      <Route path="/create/team/:id" element={<Edit />} />
+      <Route path="/create/team/:id" element={<TeamDetail />} />
       <Route path="search/hero/:id" element={<HeroDetail />} />
+      <Route path="search/team/:id/edit" element={<Edit />} />
     </Routes>
   </BrowserRouter>, rootElement
 );

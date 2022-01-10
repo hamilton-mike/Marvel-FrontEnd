@@ -1,15 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '../HomeHero/HomeHeroStyle';
 import { Url } from './LinksStyle';
+import { Flex } from '../../globalStyles'
 
 const Links = ({ urls }) => {
+    const [linkArr, setLinkArr] = useState([]);
+
+    const takeOutDuplicateUrl = () => {
+        if (urls.length > 2) {
+            setLinkArr(urls.splice(0,1))
+        }
+    }
     const linkType = type => {
         let str = '';
 
         if (type === 'detail') {
             str += "Archives"
         } else if (type === 'wiki') {
-            str += "Full Report"
+            str += "Report"
         } else {
             str += "Comics"
         }
@@ -19,12 +27,11 @@ const Links = ({ urls }) => {
 
     useEffect(() => {
         linkType()
+        takeOutDuplicateUrl()
     }, [])
 
-    // link.type === 'detail' ? 'Archives' : 'Full Report'
-
     return (
-        <>
+        <Flex>
             {urls.map(link => (
                 <Url key={link.type}>
                     <Button>
@@ -32,7 +39,7 @@ const Links = ({ urls }) => {
                     </Button>
                 </Url>
             ))}
-        </>
+        </Flex>
     )
 }
 

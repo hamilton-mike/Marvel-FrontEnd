@@ -1,13 +1,15 @@
 import React from 'react'
-import { DivEvents, H2, Unknown } from './EventsStyle'
+import '../../index.css'
+import { DivEvents, H2 } from './EventsStyle'
 
-const Events = ({ events, num }) => {
-    console.log(num);
+const Events = ({ events }) => {
+    const css = events.length > 10 ? 'grid' : 'reg'
+
     return (
         <>
             <H2>Events</H2>
-            <DivEvents num={num}>
-                {events.length <= 0 ? <Unknown>No Record of Events</Unknown> :
+            <DivEvents className={css}>
+                {events.length <= 0 ? <p>No Record of Events</p> :
                 <>
                     {events.map(event => (
                         <div key={event.resourceURI.slice(-3)}>
