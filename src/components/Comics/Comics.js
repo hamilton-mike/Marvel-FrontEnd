@@ -1,7 +1,5 @@
 import React from 'react';
 import { DivComic } from './ComicsStyle'
-import { H2 } from '../Events/EventsStyle';
-
 
 const Comics = ({ comics, img }) => {
     return (

@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from 'react'
+import React, {  useCallback, useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
@@ -19,15 +19,16 @@ const Edit = () => {
         navigate(`/create/team/${id}`)
     }
 
-    const fromBackEnd = async () => {
+    const fromBackEnd = useCallback( async () => {
         try {
             const getHeroes = await axios('http://localhost:9000/hero')
-            const sameTeam = getHeroes.data.filter(obj => obj.team == id);
+            const sameTeam = getHeroes.data.filter(obj => obj.team === id);
             setHeroes(sameTeam)
         } catch (error) {
             console.error(error);
         }
-    }
+    }, [id]);
+
     const editTeam = async (id, title) => {
         try {
             await axios.put(`http://localhost:9000/team/${id}`, { title });
@@ -50,11 +51,14 @@ const Edit = () => {
 
     const handleChange = e => {
         setEditTeamName({ ...editTeamName, [e.target.name]: e.target.value })
-        heroes.map(obj => {
+
+        for (let i = 0; i < heroes.length; i++) {
+            let obj = heroes[i];
+
             if (obj.name === e.target.value) {
                 setEditHeroName(e.target.value)
             }
-        })
+        }
     }
 
     const handleSubmitOne = async e => {
@@ -71,9 +75,8 @@ const Edit = () => {
 
     useEffect(() => {
         fromBackEnd()
-    }, [])
+    }, [fromBackEnd])
 
-    console.log(editTeamName);
 
     return (
         <>

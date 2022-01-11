@@ -16,7 +16,7 @@ const Search = () => {
     }
 
     return (
-        <div>
+        <>
             <Navbar />
             <Container>
                 <HomeDiv>
@@ -33,7 +33,7 @@ const Search = () => {
                 <SearchForm />
             </Container>
             <Footer />
-        </div>
+        </>
     )
 }
 

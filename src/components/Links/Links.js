@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { Button } from '../HomeHero/HomeHeroStyle';
 import { Url } from './LinksStyle';
 import { Flex } from '../../globalStyles'
@@ -6,11 +6,13 @@ import { Flex } from '../../globalStyles'
 const Links = ({ urls }) => {
     const [linkArr, setLinkArr] = useState([]);
 
-    const takeOutDuplicateUrl = () => {
+    const takeOutDuplicateUrl = useCallback(() => {
         if (urls.length > 2) {
-            setLinkArr(urls.splice(0,1))
+            urls.shift()
+            setLinkArr(urls)
         }
-    }
+    }, [urls])
+
     const linkType = type => {
         let str = '';
 
@@ -22,20 +24,20 @@ const Links = ({ urls }) => {
             str += "Comics"
         }
 
-        return str
+        return str;
     }
 
     useEffect(() => {
-        linkType()
         takeOutDuplicateUrl()
-    }, [])
+        linkType()
+    }, [takeOutDuplicateUrl])
 
     return (
         <Flex>
-            {urls.map(link => (
+            {linkArr.map(link => (
                 <Url key={link.type}>
                     <Button>
-                        <a href={link.url} target="_blank" rel='noopener noreferre'>{linkType(link.type)}</a>
+                        <a href={link.url} target="_blank" rel='noopener noreferrer'>{linkType(link.type)}</a>
                     </Button>
                 </Url>
             ))}

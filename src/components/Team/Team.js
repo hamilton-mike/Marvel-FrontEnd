@@ -11,7 +11,6 @@ import axios from 'axios'
 const Team = () => {
     const navigate = useNavigate();
     const [teams, setTeams] = useState([]);
-    const [members, setMembers] = useState([]);
     const [count, setCount] = useState(0)
     const team_URL = 'http://localhost:9000/team/';
     const hero_URL = 'http://localhost:9000/hero/'
@@ -19,7 +18,7 @@ const Team = () => {
 
     const createTeam = async () => {
         try {
-            const team = await axios.post(team_URL, { title: 'default' })
+            await axios.post(team_URL, { title: 'default' })
             setCount(count + 1)
         } catch (error) {
             console.error(error);
@@ -29,8 +28,6 @@ const Team = () => {
     const fromBackend = async () => {
         try {
             const team = await axios(team_URL)
-            const hero = await axios(hero_URL)
-            setMembers(hero.data);
             setTeams(team.data)
         } catch (error) {
             console.error(error);

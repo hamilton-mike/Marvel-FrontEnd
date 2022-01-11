@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from 'react'
+import React, {  useCallback, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import Carousel from '../components/Carousel/Carousel'
 import InfoDiv from '../components/InfoDiv/InfoDiv'
@@ -16,7 +16,7 @@ const Home = () => {
     const privateKey = process.env.REACT_APP_MARVEL_KEY;
     const hash = process.env.REACT_APP_MARVEL_HASH;
 
-    const marvelCall = async () => {
+    const marvelCall = useCallback(async () => {
         try {
             const ids = [1009452, 1011095, 1009338, 1016181, 1009282, 1009384, 1009562, 1017299, 1017575, 1009187, 1009268, 1009599, 1009648, 1009368, 1009675, 1009577, 1009262, 1009629];
             const carousel = ids.splice(0, 12);
@@ -33,11 +33,11 @@ const Home = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    }, [hash, privateKey]);
 
     useEffect(() => {
         marvelCall()
-    }, [])
+    }, [marvelCall])
 
     return (
         <>

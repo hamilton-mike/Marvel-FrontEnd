@@ -90,4 +90,9 @@ export const Label = styled.label`
     align-items: center;
     justify-content: center;
     margin-right: 1em;
+
+    @media (max-width: 768px) {
+        margin-left: 1em;
+    }
+
 `;

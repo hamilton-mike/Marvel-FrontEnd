@@ -65,7 +65,7 @@ export const Hamburger = styled.ul`
     height: 100vh;
     max-width: 40em;
     width: 70%;
-    padding-top: 5em;
+    padding: 2em 0 0 4em;
 
     li, a {
         justify-content: center;

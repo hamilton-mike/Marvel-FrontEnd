@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Wrapper, Form, SearchGrid, Cards, Card, Select } from './FormStyles'
+import { Wrapper, Form, Cards, Card, Select, Unorder, Img } from './FormStyles'
 import { Button } from '../HomeHero/HomeHeroStyle'
+import { Label, Container } from '../../globalStyles'
 import axios from 'axios'
 
 const SearchForm = () => {
@@ -26,7 +27,7 @@ const SearchForm = () => {
         marvelCall(userInput)
     }
 
-    const marvelCall = async () => {
+    const marvelCall = useCallback( async () => {
         try {
             const search = await axios(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${userInput.name}&ts=1&apikey=${privateKey}&hash=${hash}`);
             const results = search.data.data.results
@@ -34,7 +35,7 @@ const SearchForm = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    }, [hash, privateKey, userInput.name])
 
     const send = heroObj => {
         toBackend(heroObj)
@@ -43,7 +44,7 @@ const SearchForm = () => {
 
     const toBackend = async data => {
         try {
-            const mongo = await axios.post('http://localhost:9000/hero', {
+            await axios.post('http://localhost:9000/hero', {
                 name: data.name,
                 description: data.description,
                 team: id,
@@ -88,45 +89,41 @@ const SearchForm = () => {
         marvelCall()
         fromBackend()
         filterByName()
-    }, [userInput])
+    }, [userInput, marvelCall])
 
     return (
         <>
-            <SearchGrid>
+            <Container>
                 <Wrapper>
-                    <div>
-                        <label htmlFor="team-names"> Select Team Members For:</label>
-                        <Select name="team-names" id="team-names" onChange={selectedTeam}>
-                            <option>Select Team</option>
-                            {teams.map(team => (
-                                <option key={team._id} value={team.title}>{team.title}</option>
-                            ))}
-                        </Select>
-                    </div>
+                    <Label htmlFor="team-names"> Select Team Members For:</Label>
+                    <Select name="team-names" id="team-names" onChange={selectedTeam}>
+                        <option>Select Team</option>
+                        {teams.map(team => (
+                            <option key={team._id} value={team.title}>{team.title}</option>
+                        ))}
+                    </Select>
                     <Form onSubmit={handleSubmit}>
-                        <div>
-                            <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
-                            <Button type="submit" value='submit'>Submit</Button>
-                        </div>
+                        <input name="name" id="name" onChange={handleChange}  placeholder="Name"/>
+                        <Button type="submit" value='submit'>Submit</Button>
                     </Form>
                 </Wrapper>
                 <Cards>
                     {res.map(hero => (
                         <Card key={hero.id}>
                             <p>{hero.name}</p>
-                            <img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
-                            <ul>
+                            <Img src={`${hero.thumbnail.path}/${ext}`} alt={hero.name} />
+                            <Unorder>
                                 <li><Button onClick={() => send(hero)}>Add</Button></li>
                                 <li>
                                     <Button>
                                         <Link to={`hero/${hero.id}`}>Details</Link>
                                     </Button>
                                 </li>
-                            </ul>
+                            </Unorder>
                         </Card>
                     ))}
                 </Cards>
-            </SearchGrid>
+            </Container>
         </>
     )
 }

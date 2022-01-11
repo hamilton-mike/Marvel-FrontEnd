@@ -17,9 +17,9 @@ const Footer = () => {
                     <a href="https://github.com/hamilton-mike">Github</a>
                 </li>
             </ul>
-            <div>
+            <>
                 <img src={shield} alt='logo' />
-            </div>
+            </>
         </StyleFooter>
     )
 }

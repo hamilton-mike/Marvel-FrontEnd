@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
@@ -19,7 +19,7 @@ const Edit = () => {
     const ext = 'portrait_incredible.jpg'
 
 
-    const fromBackend = async () => {
+    const fromBackend = useCallback(async () => {
         try {
             const getTeam = await axios(`http://localhost:9000/team/${teamId}`)
             const getHero = await axios('http://localhost:9000/hero')
@@ -30,7 +30,7 @@ const Edit = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    }, [teamId])
 
 
 
@@ -41,9 +41,10 @@ const Edit = () => {
     const editTeam = () => {
         navigate(`/search/team/${teamId}/edit`)
     }
+
     useEffect(() => {
         fromBackend()
-    }, [])
+    }, [fromBackend])
 
     return (
         <>

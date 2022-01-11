@@ -23,7 +23,7 @@ const Navbar = () => {
                 </>
             ) : (
                 <div style={{ flexDirection: 'column' }}>
-                    <GiExitDoor onClick={toggle} size={100}/>
+                    <GiExitDoor onClick={toggle} style={{marginLeft: '5em'}} size={100}/>
                     <HamburgerMenu menu={menu} />
                 </div>
             )}

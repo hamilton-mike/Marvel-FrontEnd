@@ -17,7 +17,7 @@ export const HomeDiv = styled.div`
     }
 
     div {
-        padding: 0 1em;
+        padding: 1em;
     }
 
     div > h1 {

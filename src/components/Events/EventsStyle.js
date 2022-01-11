@@ -17,7 +17,7 @@ export const DivEvents = styled.div`
 
     @media (max-width: 500px) {
         p {
-            margin: 1em;
+            margin-left: 1em;
         }
         display: inline-block;
     }

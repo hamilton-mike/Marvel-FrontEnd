@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Comics from '../components/Comics/Comics';
@@ -21,7 +21,7 @@ const HeroDetail = () => {
     const { id } = useParams();
     let charcterId = id
 
-    const marvelCall = async () => {
+    const marvelCall = useCallback( async () => {
         try {
             const charcterById = await axios(`https://gateway.marvel.com/v1/public/characters/${charcterId}?ts=1&apikey=${privateKey}&hash=${hash}`);
             const results = charcterById.data.data.results["0"];
@@ -52,11 +52,11 @@ const HeroDetail = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    }, [charcterId, hash, privateKey])
 
     useEffect(() => {
         marvelCall()
-    }, [])
+    }, [marvelCall])
 
     const bio = profile.origin === '' ? `Description for ${profile.name} is unknown` : profile.origin;
 
