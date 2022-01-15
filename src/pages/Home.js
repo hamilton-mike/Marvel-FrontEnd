@@ -1,4 +1,4 @@
-import React, {  useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import Carousel from '../components/Carousel/Carousel'
 import InfoDiv from '../components/InfoDiv/InfoDiv'
@@ -7,7 +7,6 @@ import HomeHero from '../components/HomeHero/HomeHero'
 import Footer from '../components/Footer/Footer'
 import axios from 'axios'
 import { Container } from '../globalStyles'
-
 
 const Home = () => {
     const [carousel, setCarousel] = useState([]);

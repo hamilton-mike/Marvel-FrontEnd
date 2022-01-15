@@ -8,13 +8,13 @@ const Footer = () => {
             <ul>
                 <li>Socials</li>
                 <li>
-                    <a href="https://michaelhamilton.netlify.app/">Portfolio</a>
+                    <a href="https://michaelhamilton.netlify.app" target="_blank" rel='noopener noreferrer'>Portfolio</a>
                 </li>
                 <li>
-                    <a href="https://linkedin.com/in/mikehamdev">Linkedin</a>
+                    <a href="https://linkedin.com/in/mikehamdev" target="_blank" rel='noopener noreferrer'>Linkedin</a>
                 </li>
                 <li>
-                    <a href="https://github.com/hamilton-mike">Github</a>
+                    <a href="https://github.com/hamilton-mike" target="_blank" rel='noopener noreferrer'>Github</a>
                 </li>
             </ul>
             <>

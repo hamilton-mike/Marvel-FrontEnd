@@ -10,7 +10,7 @@ const HamburgerMenu = ({ menu }) => {
                     <li><a href="/home">Home</a></li>
                     <li><a href='/create'>Create</a></li>
                     <li><a href='/search'>Search</a></li>
-                    {/* <li><a href='#'>Trivia</a></li> */}
+                    <li><a href='/trivia'>Trivia</a></li>
                 </ul>
 
             ) : (
@@ -18,7 +18,7 @@ const HamburgerMenu = ({ menu }) => {
                 <li><a href="/home">Home</a></li>
                 <li><a href='/create'>Create</a></li>
                 <li><a href='/search'>Search</a></li>
-                {/* <li><a href='#'>Trivia</a></li> */}
+                <li><a href='/trivia'>Trivia</a></li>
             </Hamburger>)}
         </>
     )

@@ -24,7 +24,6 @@ const Search = () => {
                         <h1>Welcome to S.H.I.E.L.D's database</h1>
                         <p>Start your research here</p>
                         <Button onClick={create}>Create</Button>
-
                     </div>
                     <div>
                         <img style={{borderRadius: '1rem'}} src={bubble} alt='Stategic Homeland Intervention Enforcement Logistics Division'/>
