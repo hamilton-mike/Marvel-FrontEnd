@@ -4,6 +4,7 @@ import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
 import { HomeDiv, Button } from '../components/HomeHero/HomeHeroStyle';
 import { Div, UnOrder, Li, Image } from '../components/InfoDiv/InfoDivStyles';
+import { Header } from '../components/Quiz/QuizStyles';
 import { H2 } from '../components/Events/EventsStyle';
 import { Container, Grid } from '../globalStyles'
 import collection from '../img/team.jpg'
@@ -24,7 +25,7 @@ const Edit = () => {
             const getTeam = await axios(`http://localhost:9000/team/${teamId}`)
             const getHero = await axios('http://localhost:9000/hero')
             const sameTeam = getHero.data.filter(obj => obj.team === teamId)
-
+            console.log(sameTeam);
             setMemebers(sameTeam)
             setEdit(getTeam.data, 'hero')
         } catch (error) {
@@ -60,7 +61,10 @@ const Edit = () => {
                         <img  style={{borderRadius: '1rem'}} src={collection} alt="X-Men" />
                     </div>
                 </HomeDiv>
+                <Header>
                     <H2>Team Name: {edit.title}</H2>
+                    {members.length < 1 ? <H2>No Members 😭</H2> : null}
+                </Header>
                 <Grid>
                     {members.map(member => (
                         <Div key={member._id}>

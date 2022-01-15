@@ -11,6 +11,7 @@ const Edit = () => {
     const [heroes, setHeroes] = useState([]);
     const [editHeroName, setEditHeroName] = useState('')
     const [editTeamName, setEditTeamName] = useState([]);
+    const [members, setMembers] = useState([])
     const navigate = useNavigate();
     const params = useParams();
     const { id } = params;
@@ -23,6 +24,7 @@ const Edit = () => {
         try {
             const getHeroes = await axios('http://localhost:9000/hero')
             const sameTeam = getHeroes.data.filter(obj => obj.team === id);
+            setMembers(getHeroes.data)
             setHeroes(sameTeam)
         } catch (error) {
             console.error(error);
@@ -32,7 +34,7 @@ const Edit = () => {
     const editTeam = async (id, title) => {
         try {
             await axios.put(`http://localhost:9000/team/${id}`, { title });
-            navigate(`/create/team/${id}`)
+            team()
         } catch (error) {
             console.error(error);
         }
@@ -43,7 +45,19 @@ const Edit = () => {
             const filterHero = heroes.filter(obj => obj.name === hero);
             const heroId = (filterHero["0"]._id);
             await axios.put(`http://localhost:9000/hero/${heroId}`, { name });
-            navigate(`/create/team/${id}`)
+            team()
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const deleteHero = async e => {
+        try {
+            e.preventDefault();
+            const heroObject = members.filter(obj => obj.name === editHeroName)
+            const id = heroObject["0"]._id;
+            await axios.delete(`http://localhost:9000/hero/${id}`)
+            team()
         } catch (error) {
             console.error(error);
         }
@@ -110,6 +124,18 @@ const Edit = () => {
                         </select>
                         <input type="text" id='name' name='name'onChange={handleChange}></input>
                         <Button type="submit">Submit</Button>
+                    </FormDiv>
+                </form>
+                <form onSubmit={deleteHero} style={{ display: 'flex'}}>
+                    <FormDiv>
+                        <Label htmlFor="description">Delete Hero</Label>
+                        <select name="team-names" id="team-names" onChange={handleChange}>
+                            <option>Member</option>
+                            {heroes.map(hero => (
+                                <option key={hero._id} value={hero.name}>{hero.name}</option>
+                            ))}
+                        </select>
+                        <Button type="submit">Delete</Button>
                     </FormDiv>
                 </form>
             </Container>

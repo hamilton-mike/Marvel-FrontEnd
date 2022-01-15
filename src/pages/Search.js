@@ -26,7 +26,7 @@ const Search = () => {
                         <Button onClick={create}>Create</Button>
                     </div>
                     <div>
-                        <img style={{borderRadius: '1rem'}} src={bubble} alt='Stategic Homeland Intervention Enforcement Logistics Division'/>
+                        <img style={{  borderRadius: '1rem' }} src={bubble} alt='Stategic Homeland Intervention Enforcement Logistics Division'/>
                     </div>
                 </HomeDiv>
                 <SearchForm />
