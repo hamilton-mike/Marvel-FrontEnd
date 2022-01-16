@@ -16,7 +16,7 @@ const Quiz = () => {
     const [select, setSelect] = useState('');
     const [hero, setHero] = useState("");
     const [quiz, setQuiz] = useState(true);
-    const url = 'http://localhost:9000'
+    const url = 'https://marvel-mern-app.herokuapp.com';
 
     const fromBackend = useCallback( async () => {
       try {
