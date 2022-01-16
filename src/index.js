@@ -17,10 +17,10 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="home" element={<Home />} />
-      <Route path="create" element={<Create />} />
-      <Route path="search" element={<Search />} />
-      <Route path="trivia" element={<Trivia />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/create" element={<Create />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/trivia" element={<Trivia />} />
       <Route path="/create/team/:id" element={<TeamDetail />} />
       <Route path="search/hero/:id" element={<HeroDetail />} />
       <Route path="search/team/:id/edit" element={<Edit />} />
