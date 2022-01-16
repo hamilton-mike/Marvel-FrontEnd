@@ -16,9 +16,7 @@ const Team = () => {
 
     const createTeam = async () => {
         try {
-            const post = await axios.post(`${url}/team`, { title: 'default'}, { headers: {
-                'Access-Control-Allow-Origin': 'https://shield-commander.netlify.app'
-            }})
+            const post = await axios.post(`${url}/team`, { title: 'default' })
             console.log(post, 'post');
             setCount(count + 1)
         } catch (error) {
