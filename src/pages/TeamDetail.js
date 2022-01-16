@@ -18,22 +18,20 @@ const Edit = () => {
     const { id } = params;
     const teamId = id.substring(0, 24);
     const ext = 'portrait_incredible.jpg'
+    const url = 'https://marvel-mern-app.herokuapp.com'
 
 
     const fromBackend = useCallback(async () => {
         try {
-            const getTeam = await axios(`http://localhost:9000/team/${teamId}`)
-            const getHero = await axios('http://localhost:9000/hero')
+            const getTeam = await axios(`${url}/team/${teamId}`)
+            const getHero = await axios(`${url}/hero`)
             const sameTeam = getHero.data.filter(obj => obj.team === teamId)
-            console.log(sameTeam);
             setMemebers(sameTeam)
             setEdit(getTeam.data, 'hero')
         } catch (error) {
             console.error(error);
         }
     }, [teamId])
-
-
 
     const heroDetail = id => {
         navigate(`/search/hero/${id}`)

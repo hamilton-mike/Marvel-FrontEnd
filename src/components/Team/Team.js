@@ -12,13 +12,11 @@ const Team = () => {
     const navigate = useNavigate();
     const [teams, setTeams] = useState([]);
     const [count, setCount] = useState(0)
-    const team_URL = 'http://localhost:9000/team/';
-    const hero_URL = 'http://localhost:9000/hero/'
-
+    const url = 'https://marvel-mern-app.herokuapp.com'
 
     const createTeam = async () => {
         try {
-            await axios.post(team_URL, { title: 'default' })
+            await axios.post(`${url}/team/`, { title: 'default' })
             setCount(count + 1)
         } catch (error) {
             console.error(error);
@@ -27,7 +25,7 @@ const Team = () => {
 
     const fromBackend = async () => {
         try {
-            const team = await axios(team_URL)
+            const team = await axios(`${url}/team`)
             setTeams(team.data)
         } catch (error) {
             console.error(error);
@@ -36,7 +34,7 @@ const Team = () => {
 
     const deleteTeam = async id => {
         try {
-            const deleteTeam = await axios(`${team_URL}${id}`, { method: "DELETE" });
+            const deleteTeam = await axios(`${url}/team/${id}`, { method: "DELETE" });
             const deleted = deleteTeam.data;
             setTeams(teams.filter(team => team._id !== deleted._id))
             deleteHeros(id)
@@ -47,11 +45,11 @@ const Team = () => {
 
     const deleteHeros = async id => {
         try {
-            const getRequest = await axios(`${hero_URL}`);
+            const getRequest = await axios(`${url}/hero`);
             const heroesArray = getRequest.data;
             const arrayFilterByTeam = heroesArray.filter(obj => obj.team === id);
             arrayFilterByTeam.map(async obj => {
-                await axios(`${hero_URL}${obj._id}`, { method: "DELETE" })
+                await axios(`${url}/hero/${obj._id}`, { method: "DELETE" })
             });
         } catch (error) {
             console.error(error);

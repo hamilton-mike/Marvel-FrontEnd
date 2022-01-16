@@ -15,6 +15,7 @@ const SearchForm = () => {
     const [teams, setTeams] = useState([])
     const [id, setId] = useState([])
     const ext = 'portrait_incredible.jpg';
+    const url = 'https://marvel-mern-app.herokuapp.com'
     const privateKey = process.env.REACT_APP_MARVEL_KEY;
     const hash = process.env.REACT_APP_MARVEL_HASH;
 
@@ -39,12 +40,11 @@ const SearchForm = () => {
 
     const send = heroObj => {
         toBackend(heroObj)
-        console.log(heroObj, 'xyz');
     }
 
     const toBackend = async data => {
         try {
-            await axios.post('http://localhost:9000/hero', {
+            await axios.post(`${url}/hero`, {
                 name: data.name,
                 description: data.description,
                 team: id,
@@ -61,7 +61,7 @@ const SearchForm = () => {
 
     const fromBackend = async () => {
         try {
-            const get = await axios('http://localhost:9000/team')
+            const get = await axios(`${url}/team`)
             setTeams(get.data)
         } catch (error) {
             console.error(error);
@@ -70,7 +70,7 @@ const SearchForm = () => {
 
     const filterByName = async name => {
         try {
-            const get = await axios('http://localhost:9000/team')
+            const get = await axios(`${url}/team`)
             const teamName = get.data.filter(team => team.title === name);
             const teamId = teamName['0']._id;
             setId(teamId)
@@ -83,7 +83,6 @@ const SearchForm = () => {
         const selectedTeam = e.target.value;
         filterByName(selectedTeam)
     }
-
 
     useEffect(() => {
         marvelCall()

@@ -15,6 +15,7 @@ const Edit = () => {
     const navigate = useNavigate();
     const params = useParams();
     const { id } = params;
+    const url = 'https://marvel-mern-app.herokuapp.com';
 
     const team = () => {
         navigate(`/create/team/${id}`)
@@ -22,7 +23,7 @@ const Edit = () => {
 
     const fromBackEnd = useCallback( async () => {
         try {
-            const getHeroes = await axios('http://localhost:9000/hero')
+            const getHeroes = await axios(`${url}/hero`)
             const sameTeam = getHeroes.data.filter(obj => obj.team === id);
             setMembers(getHeroes.data)
             setHeroes(sameTeam)
@@ -33,7 +34,7 @@ const Edit = () => {
 
     const editTeam = async (id, title) => {
         try {
-            await axios.put(`http://localhost:9000/team/${id}`, { title });
+            await axios.put(`${url}/team/${id}`, { title });
             team()
         } catch (error) {
             console.error(error);
@@ -44,7 +45,7 @@ const Edit = () => {
         try {
             const filterHero = heroes.filter(obj => obj.name === hero);
             const heroId = (filterHero["0"]._id);
-            await axios.put(`http://localhost:9000/hero/${heroId}`, { name });
+            await axios.put(`${url}/hero/${heroId}`, { name });
             team()
         } catch (error) {
             console.error(error);
@@ -56,7 +57,7 @@ const Edit = () => {
             e.preventDefault();
             const heroObject = members.filter(obj => obj.name === editHeroName)
             const id = heroObject["0"]._id;
-            await axios.delete(`http://localhost:9000/hero/${id}`)
+            await axios.delete(`${url}/hero/${id}`)
             team()
         } catch (error) {
             console.error(error);

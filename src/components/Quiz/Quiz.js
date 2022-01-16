@@ -16,9 +16,11 @@ const Quiz = () => {
     const [select, setSelect] = useState('');
     const [hero, setHero] = useState("");
     const [quiz, setQuiz] = useState(true);
+    const url = 'http://localhost:9000'
+
     const fromBackend = useCallback( async () => {
       try {
-        const get = await axios('http://localhost:9000/team')
+        const get = await axios(`${url}/team`)
         setTeams(get.data)
       } catch (error) {
         console.error(error);
@@ -27,7 +29,7 @@ const Quiz = () => {
 
     const getMembers = useCallback( async (id) => {
       try {
-        const get = await axios('http://localhost:9000/hero');
+        const get = await axios(`${url}/hero`);
         const members = get.data.filter(obj => obj.team === id)
         setHero(members)
       } catch (error) {
