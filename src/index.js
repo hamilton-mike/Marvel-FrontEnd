@@ -18,12 +18,12 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/create" element={<Create />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/trivia" element={<Trivia />} />
-      <Route path="/create/team/:id" element={<TeamDetail />} />
-      <Route path="search/hero/:id" element={<HeroDetail />} />
-      <Route path="search/team/:id/edit" element={<Edit />} />
+      <Route path="/home/create" element={<Create />} />
+      <Route path="/home/search" element={<Search />} />
+      <Route path="/home/trivia" element={<Trivia />} />
+      <Route path="/home/create/team/:id" element={<TeamDetail />} />
+      <Route path="/home/search/hero/:id" element={<HeroDetail />} />
+      <Route path="/home/search/team/:id/edit" element={<Edit />} />
     </Routes>
   </BrowserRouter>, rootElement
 );
