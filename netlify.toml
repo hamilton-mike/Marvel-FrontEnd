@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "https://marvel-mern-app.herokuapp.com/*"
+  to = "https://marvel-mern-app.herokuapp.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200
