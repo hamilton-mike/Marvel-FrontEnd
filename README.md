@@ -50,8 +50,18 @@ const marvelCall = useCallback(async () => {
         }
     }, [hash, privateKey]);
 ```
+## Live Photos
 
-## Site Map
+### Home Page
+![Carousel](src/img/home-page.png)
+
+### Details Page
+![Comics](src/img/comics.png)
+
+### Search Page
+![Ghost Rider](src/img/ghost.png)
+
+### Site Map
 * [Intro](https://shield-commander.netlify.app/)
 * [Home](https://shield-commander.netlify.app/home)
 * [Create](https://shield-commander.netlify.app/create)
