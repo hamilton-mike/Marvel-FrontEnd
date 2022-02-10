@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Test your Marvel Knowledge 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](src/img/marvelLogo.jpg)
 
-## Available Scripts
+### Description
 
-In the project directory, you can run:
+Commander, there was an idea to bring together a group of remarkable people. This app helps users create and customized teams. Teams & members are models created on the backend. Users can search for heroes or villains by name. Add members to their created team, edit & delete teams or members. Once the team is created user will test their knowledge by asking how many stories, events, or comics that member has. All answers can be found looking at the members' details page 
 
-### `npm start`
+### Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project was made using\
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Front-End 
+* React to crete reusable UI components
+* Style Components to style the components 
+* Axios to make asynchronous calls to Marvel's API
 
-### `npm test`
+## Back-end
+* Mongoose to manage relationship between both models (One-to-Many)
+* Express providing middleware for RESTful API, database support, enabled CORS 
+* Node to communicate on the client-side
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Code Snippet
 
-### `npm run build`
+### Set Images for Carousel
+```js
+const marvelCall = useCallback(async () => {
+        try {
+            const ids = [1009452, 1011095, 1009338, 1016181, 1009282, 1009384, 1009562, 1017299, 1017575, 1009187, 1009268, 1009599, 1009648, 1009368, 1009675, 1009577, 1009262, 1009629];
+            const carousel = ids.splice(0, 12);
+            const cards = ids.slice();
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+            const promiseOne = carousel.map(async id => axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`));
+            const promiseTwo = cards.map(async id => axios(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${privateKey}&hash=${hash}`));
+            const carouselResults = await Promise.all(promiseOne)
+            const cardsResults = await Promise.all(promiseTwo)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+            setLoading(false)
+            setCarousel(carouselResults.map(result => result.data.data.results[0]))
+            setCards(cardsResults.map(result => result.data.data.results[0]))
+        } catch (error) {
+            console.error(error);
+        }
+    }, [hash, privateKey]);
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Site Map
+* [Intro](https://shield-commander.netlify.app/)
+* [Home](https://shield-commander.netlify.app/home)
+* [Create](https://shield-commander.netlify.app/create)
+* [Search](https://shield-commander.netlify.app/search)
+* [Trivia](https://shield-commander.netlify.app/trivia)
