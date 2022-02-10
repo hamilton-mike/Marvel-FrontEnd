@@ -22,7 +22,7 @@ This project was made using\
 * Style Components to style the components 
 * Axios to make asynchronous calls to Marvel's API
 
-## Back-end
+## [Back-end](https://github.com/hamilton-mike/Marvel-BackEnd)
 * Mongoose to manage relationship between both models (One-to-Many)
 * Express providing middleware for RESTful API, database support, enabled CORS 
 * Node to communicate on the client-side
