@@ -6,7 +6,7 @@ const HomeHero = () => {
     return (
         <HomeDiv>
             <div>
-                <h1>Welcome back, Commander! <br/> Heroes and Villians are working together, assemble your squad.</h1> <br />
+                <h3>Heroes and Villians are working together, assemble your squad.</h3>
                 <p>Use Silver Surfer, Killmonger, Mystique and many more.</p>
                 <Button><a href="/create">Create</a></Button>
                 <Button><a href="/search">Search</a></Button>

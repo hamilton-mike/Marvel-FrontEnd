@@ -67,6 +67,7 @@ export const Card = styled.div`
     align-content: center;
     text-align: center;
     cursor: pointer;
+    color: white;
 
     a {
         text-decoration: none;

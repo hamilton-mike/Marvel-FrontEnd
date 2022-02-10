@@ -26,6 +26,8 @@ const Home = () => {
             const carouselResults = await Promise.all(promiseOne)
             const cardsResults = await Promise.all(promiseTwo)
 
+            console.log(cardsResults);
+
             setLoading(false)
             setCarousel(carouselResults.map(result => result.data.data.results[0]))
             setCards(cardsResults.map(result => result.data.data.results[0]))

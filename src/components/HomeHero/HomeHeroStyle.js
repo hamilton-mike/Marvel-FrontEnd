@@ -20,10 +20,6 @@ export const HomeDiv = styled.div`
         padding: 1em;
     }
 
-    div > h1 {
-        font-size: 1.5em;
-    }
-
     img {
         margin-top: 2em;
         width: 100%;
