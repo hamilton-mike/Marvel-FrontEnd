@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BsPlusLg } from 'react-icons/bs'
 import { Section, ChilDiv, Modify, FlexDiv, Line } from './TeamStyle';
 import { Container, Grid } from '../../globalStyles'
+import Loading from '../Loading/Loading'
 import { FiTrash2 } from 'react-icons/fi'
 import { AiOutlineEdit } from 'react-icons/ai'
 import axios from 'axios'
@@ -11,7 +12,8 @@ import axios from 'axios'
 const Team = () => {
     const navigate = useNavigate();
     const [teams, setTeams] = useState([]);
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
+    const [loading, setLoading] = useState(true);
     const url = 'https://marvel-mern-app.herokuapp.com'
 
     const createTeam = async () => {
@@ -28,6 +30,7 @@ const Team = () => {
         try {
             const team = await axios(`${url}/team`)
             setTeams(team.data)
+            setLoading(false)
         } catch (error) {
             console.error(error);
         }
@@ -67,28 +70,35 @@ const Team = () => {
     }, [count])
 
     return (
-        <Section>
-            <Container>
-                <FlexDiv>
-                    <div>
-                        <h1>Create a Team</h1>
-                        <Line></Line>
-                    </div>
-                    <BsPlusLg size={70} onClick={createTeam} style={{ cursor: 'pointer' }}/>
-                </FlexDiv>
-                <Grid>
-                    {teams.map(team => (
-                        <ChilDiv key={team._id}>
-                            <p>{team.title}</p>
-                            <Modify>
-                                <AiOutlineEdit size={30} onClick={() => teamDetail(team._id)} />
-                                <FiTrash2 size={30} onClick={() => deleteTeam(team._id)} />
-                            </Modify>
-                        </ChilDiv>
-                    ))}
-                </Grid>
-            </Container>
-        </Section>
+        <>
+            {loading ? <Loading /> :
+                <>
+                    <Section>
+                        <Container>
+                            <FlexDiv>
+                                <div>
+                                    <h1>Create a Team</h1>
+                                    <Line></Line>
+                                </div>
+                                <BsPlusLg size={70} onClick={createTeam} style={{ cursor: 'pointer' }}/>
+                            </FlexDiv>
+                            <Grid>
+                                {teams.map(team => (
+                                    <ChilDiv key={team._id}>
+                                        <p>{team.title}</p>
+                                        <Modify>
+                                            <AiOutlineEdit size={30} onClick={() => teamDetail(team._id)} />
+                                            <FiTrash2 size={30} onClick={() => deleteTeam(team._id)} />
+                                        </Modify>
+                                    </ChilDiv>
+                                ))}
+                            </Grid>
+                        </Container>
+                    </Section>
+                </>
+            }
+        </>
+
     )
 }
 
