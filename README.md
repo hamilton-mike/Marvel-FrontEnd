@@ -18,18 +18,18 @@ This project was made using\
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
 ## Front-End 
-* React to crete reusable UI components
-* Style Components to style the components 
+* React to create reusable UI components
+* Style Components to style the implement CSS rules 
 * Axios to make asynchronous calls to Marvel's API
 
 ## [Back-end](https://github.com/hamilton-mike/Marvel-BackEnd)
-* Mongoose to manage relationship between both models (One-to-Many)
+* Mongoose to manage the relationship between both models (One-to-Many)
 * Express providing middleware for RESTful API, database support, enabled CORS 
 * Node to communicate on the client-side
 
 ## Code Snippet
 
-### Set Images for Carousel
+### Set Images for Home Page
 ```js
 const marvelCall = useCallback(async () => {
         try {
