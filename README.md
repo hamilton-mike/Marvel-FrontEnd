@@ -19,7 +19,7 @@ This project was made using\
 
 ## Front-End 
 * React to create reusable UI components
-* Style Components to style the implement CSS rules 
+* Style Components to implement CSS rules 
 * Axios to make asynchronous calls to Marvel's API
 
 ## [Back-end](https://github.com/hamilton-mike/Marvel-BackEnd)
